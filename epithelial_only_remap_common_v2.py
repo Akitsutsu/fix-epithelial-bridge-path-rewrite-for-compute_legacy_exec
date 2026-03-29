@@ -23,6 +23,7 @@ import os
 import re
 import shutil
 import sys
+import traceback
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -134,6 +135,7 @@ def _rewrite_epi_legacy_source(
     whole_lung_projection: Path,
     outdir: Path,
     query_id: str,
+    project_root: Path,
 ) -> Tuple[str, Dict[str, object]]:
     debug: Dict[str, object] = {}
     out = source
@@ -160,15 +162,21 @@ def _rewrite_epi_legacy_source(
     }
 
     # Also replace known literals anywhere they appear, including summary JSON.
+    # Input paths stay repo-relative; OUTDIR stays absolute.
+    ref_rel = _legacy_rel(reference, project_root)
+    meta_rel = _legacy_rel(metadata, project_root)
+    qry_rel = _legacy_rel(query_h5ad, project_root)
+    gate_rel = _legacy_rel(whole_lung_projection, project_root)
+
     out, path_counts = _replace_path_literals(
         out,
         {
-            "converted/reference_RNA.h5ad": reference.as_posix(),
-            "converted/reference_metadata_v1.csv": metadata.as_posix(),
-            "converted/query_CA1_clean.h5ad": query_h5ad.as_posix(),
-            "converted/query_BU3_clean.h5ad": query_h5ad.as_posix(),
-            "prototype_out_v1/CA1_cell_projection_v1.csv": whole_lung_projection.as_posix(),
-            "prototype_out_v1/BU3_cell_projection_v1.csv": whole_lung_projection.as_posix(),
+            "converted/reference_RNA.h5ad": ref_rel,
+            "converted/reference_metadata_v1.csv": meta_rel,
+            "converted/query_CA1_clean.h5ad": qry_rel,
+            "converted/query_BU3_clean.h5ad": qry_rel,
+            "prototype_out_v1/CA1_cell_projection_v1.csv": gate_rel,
+            "prototype_out_v1/BU3_cell_projection_v1.csv": gate_rel,
             "prototype_out_epi_v1": outdir.as_posix(),
             "prototype_out_epi_v1_BU3": outdir.as_posix(),
         },
@@ -193,6 +201,7 @@ def run_compute_legacy_exec(
     whole_lung_projection: Path,
     outdir: Path,
     query_id: str,
+    project_root: Path,
 ) -> Dict[str, object]:
     if not legacy_script.exists():
         raise UserFacingError(f"legacy script not found: {legacy_script}")
@@ -210,7 +219,27 @@ def run_compute_legacy_exec(
         whole_lung_projection=whole_lung_projection,
         outdir=outdir,
         query_id=query_id,
+        project_root=project_root,
     )
+
+    # --- Debug dump: write rewritten source for inspection ---
+    debug_script = outdir / f"{query_id}_epithelial_rewritten_debug.py"
+    debug_script.write_text(rewritten, encoding="utf-8")
+    debug["rewritten_debug_path"] = str(debug_script)
+
+    # --- Pre-exec adapter meta ---
+    adapter_meta_path = outdir / f"{query_id}_epithelial_adapter_meta.json"
+    pre_meta: Dict[str, object] = {
+        "status": "prepared",
+        "adapter": "epithelial_only_remap_common_v2.py",
+        "mode": "compute_legacy_exec",
+        "query_id": query_id,
+        "legacy_script": str(legacy_script),
+        "project_root": str(project_root),
+        "rewrite_debug": debug,
+    }
+    with open(adapter_meta_path, "w", encoding="utf-8") as f:
+        json.dump(pre_meta, f, ensure_ascii=False, indent=2)
 
     expected_required = [
         outdir / f"{query_id}_epi_summary_v1.json",
@@ -233,6 +262,17 @@ def run_compute_legacy_exec(
     sys.argv = [str(legacy_script)]
     try:
         exec(compile(rewritten, str(legacy_script), "exec"), ns, ns)
+    except Exception:
+        tb_text = traceback.format_exc()
+        tb_path = outdir / f"{query_id}_epithelial_traceback.txt"
+        tb_path.write_text(tb_text, encoding="utf-8")
+        pre_meta["status"] = "failed"
+        pre_meta["traceback_path"] = str(tb_path)
+        tail = tb_text.strip().splitlines()
+        pre_meta["exception_tail"] = tail[-1] if tail else ""
+        with open(adapter_meta_path, "w", encoding="utf-8") as f:
+            json.dump(pre_meta, f, ensure_ascii=False, indent=2)
+        raise
     finally:
         sys.argv = old_argv
 
@@ -245,6 +285,7 @@ def run_compute_legacy_exec(
 
     return {
         "legacy_script": str(legacy_script),
+        "project_root": str(project_root),
         "required_outputs": [str(p) for p in expected_required],
         "optional_outputs_present": [str(p) for p in expected_optional if p.exists()],
         "optional_outputs_missing": [str(p) for p in expected_optional if not p.exists()],
@@ -277,6 +318,8 @@ def main() -> None:
     parser.add_argument("--source-boundary-pairs", default=None)
     parser.add_argument("--source-boundary-direction-marker", default=None)
     parser.add_argument("--legacy-script", default=None)
+    parser.add_argument("--project-root", default=None,
+                        help="Project root for repo-relative path resolution (default: cwd)")
     args = parser.parse_args()
 
     query_id = str(args.query_id).strip()
@@ -395,6 +438,7 @@ def main() -> None:
     else:
         if not args.legacy_script:
             raise UserFacingError("--legacy-script is required for --mode compute_legacy_exec")
+        project_root = Path(args.project_root).resolve() if args.project_root else Path.cwd()
         compute_meta = run_compute_legacy_exec(
             legacy_script=Path(args.legacy_script).resolve(),
             reference=reference,
@@ -404,6 +448,7 @@ def main() -> None:
             whole_lung_projection=whole_lung_projection,
             outdir=outdir,
             query_id=query_id,
+            project_root=project_root,
         )
         meta = {
             "adapter": "epithelial_only_remap_common_v2.py",
