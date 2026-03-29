@@ -1,0 +1,15 @@
+*.h5ad
+*.rds
+benchmark_run_v1*/
+prototype_out*/
+__pycache__/
+*.pyc
+*.bak
+*.save
+c2l_model_checkpoint*/
+logs/
+*.pyc
+*.bak
+*.save
+c2l_model_checkpoint*/
+logs/

@@ -1,0 +1,3 @@
+query_id,h5ad_path,note,enabled,group_label,expected_sample_id,expected_donor_id,expected_source_type,expected_batch_id
+CA1,converted/query_CA1_clean.h5ad,CA1 organoid query,true,organoid_batch1,query_CA1_organoid_01,CA1,organoid,GSE266789_CA1_exp_org
+BU3,converted/query_BU3_clean.h5ad,BU3 organoid query,true,organoid_batch1,query_BU3_organoid_01,BU3,organoid,GSE266789_BU3_exp_org

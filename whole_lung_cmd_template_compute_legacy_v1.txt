@@ -1,0 +1,1 @@
+python whole_lung_project_common_v2.py --reference {reference} --metadata {metadata} --query-id {query_id} --query-h5ad {h5ad_path} --stage-axis {stage_axis} --outdir {whole_lung_outdir} --mode compute_legacy_exec --legacy-script project_BU3_to_reference_RNA_v1.py
