@@ -111,12 +111,19 @@ def _replace_path_literals(source: str, replacements: Dict[str, str]) -> Tuple[s
         counts[old] = n
     return out, counts
 
-
 def _replace_prefix_tokens(source: str, query_id: str) -> Tuple[str, Dict[str, int]]:
     counts = {"CA1_": source.count("CA1_"), "BU3_": source.count("BU3_")}
     out = source.replace("CA1_", f"{query_id}_").replace("BU3_", f"{query_id}_")
     return out, counts
 
+
+def _legacy_rel(p: Path, project_root: Path) -> str:
+    p = p.resolve()
+    project_root = project_root.resolve()
+    try:
+        return p.relative_to(project_root).as_posix()
+    except ValueError:
+        return p.as_posix()
 
 def _rewrite_epi_legacy_source(
     source: str,
