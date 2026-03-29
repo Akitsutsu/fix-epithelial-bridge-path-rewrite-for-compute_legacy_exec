@@ -1,15 +1,32 @@
+# Data files
 *.h5ad
 *.rds
+*.h5Seurat
+
+# Run outputs
 benchmark_run_v1*/
 prototype_out*/
+provenance_audit_v1/
+
+# Python
 __pycache__/
 *.pyc
+
+# Backups / patches
 *.bak
 *.save
+*.patch
+
+# Model checkpoints
 c2l_model_checkpoint*/
+
+# Logs
 logs/
-*.pyc
-*.bak
-*.save
-c2l_model_checkpoint*/
-logs/
+
+# R session artifacts
+.Rhistory
+.RData
+.Rproj.user/
+
+# Archives
+*.tar.gz
