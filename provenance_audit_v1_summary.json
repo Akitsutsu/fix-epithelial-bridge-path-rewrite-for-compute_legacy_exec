@@ -1,0 +1,69 @@
+{
+  "audit_date": "2026-03-29",
+  "verdict": "MATCH",
+  "verdict_detail": "Rebuild is content-exact / operationally exact match to frozen pair",
+  "frozen_pair": {
+    "h5ad": "converted/reference_RNA.h5ad",
+    "metadata": "converted/reference_metadata_v1.csv"
+  },
+  "rebuilt_pair": {
+    "h5ad": "rebuild_audit_v1/reference_RNA.h5ad",
+    "metadata": "rebuild_audit_v1/reference_metadata_v1.csv"
+  },
+  "rebuild_scripts": [
+    "build_frozen_reference_v1.R",
+    "extract_reference_metadata_v1.py"
+  ],
+  "rebuild_environment": {
+    "R": "4.5.1",
+    "Seurat": "5.3.0",
+    "SeuratDisk": "0.0.0.9021",
+    "SeuratObject": "5.1.0"
+  },
+  "matrix_comparison": {
+    "shape_match": true,
+    "shape": [144380, 30852],
+    "obs_names_match": true,
+    "var_names_match": true,
+    "obs_columns_match": true,
+    "obs_column_count": 17,
+    "x_dtype": "float64",
+    "x_exact_match": true,
+    "x_sample_method": "100 random full rows, array_equal",
+    "x_non_negative": true,
+    "x_log_normalized": true,
+    "raw_present": true,
+    "raw_var_names_integer_indexed": true,
+    "raw_exact_match": true,
+    "raw_sample_method": "10 random full rows, array_equal",
+    "h5ad_size_frozen_bytes": 1701225837,
+    "h5ad_size_rebuilt_bytes": 1701225791,
+    "h5ad_size_diff_bytes": 46,
+    "h5ad_size_diff_cause": "HDF5 container metadata"
+  },
+  "metadata_comparison": {
+    "shape_match": true,
+    "shape": [144380, 9],
+    "columns_match": true,
+    "columns": ["cell_id", "sample_id", "sample_name", "stage_fine", "stage_num", "stage_coarse", "state_coarse", "state_fine", "group_internal"],
+    "cell_id_order_match": true,
+    "all_columns_value_match": true,
+    "distribution_match": {
+      "stage_fine": true,
+      "stage_coarse": true,
+      "state_coarse": true,
+      "group_internal": true
+    },
+    "csv_size_frozen_bytes": 16382869,
+    "csv_size_rebuilt_bytes": 16671629,
+    "csv_size_diff_cause": "QUOTE_ALL vs selective quoting for integer stage_num"
+  },
+  "query_gene_overlap": {
+    "CA1": {"query_genes": 28648, "overlap": 27752, "percent": 96.9},
+    "BU3": {"query_genes": 28648, "overlap": 27752, "percent": 96.9}
+  },
+  "known_artifacts": [
+    ".raw.var_names are integer-indexed (SeuratDisk artifact)",
+    ".X is log-normalized (Seurat data layer), not raw counts"
+  ]
+}
