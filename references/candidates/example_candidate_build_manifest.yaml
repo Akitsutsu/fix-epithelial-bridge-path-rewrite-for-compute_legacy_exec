@@ -1,0 +1,34 @@
+# Example candidate build manifest
+#
+# This file documents the expected manifest fields.
+# Actual manifests are generated automatically:
+#   - build_reference_candidate_v1.R writes the build step fields
+#   - extract_reference_metadata_candidate_v1.py appends metadata step fields
+#
+# To plan a candidate build, copy this file and adjust the top section,
+# or pass the values directly as CLI arguments.
+
+# ── User-specified fields (set via CLI arguments) ────────────────────────────
+
+tag: 2026-04-early-only
+source_rds: GSE264407_full_fetal_lung_dataset_04142025.rds
+codebook_dir: codebook
+sample_week_include: week_10,week_11,week_12,week_13
+
+# ── Auto-populated by build_reference_candidate_v1.R ─────────────────────────
+
+# build_date: 2026-04-01
+# build_script: build_reference_candidate_v1.R
+# cells_before_filter: 144380
+# cells_after_filter: 87654
+# genes: 30852
+# h5seurat_output: reference_RNA.h5Seurat
+# h5ad_output: reference_RNA.h5ad
+
+# ── Auto-populated by extract_reference_metadata_candidate_v1.py ─────────────
+
+# metadata_script: extract_reference_metadata_candidate_v1.py
+# metadata_extract_date: 2026-04-01
+# metadata_rows: 87654
+# metadata_columns: 9
+# metadata_output: reference_metadata.csv
