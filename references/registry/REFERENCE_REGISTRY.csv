@@ -1,0 +1,2 @@
+release_version,release_name,expression_path,metadata_path,source_dataset,source_file,stage_axis,build_script,metadata_script,audit_doc,audit_verdict,status
+v1,fetal_lung_v1,converted/reference_RNA.h5ad,converted/reference_metadata_v1.csv,GSE264407,GSE264407_full_fetal_lung_dataset_04142025.rds,sample_week,build_frozen_reference_v1.R,extract_reference_metadata_v1.py,REFERENCE_PROVENANCE_AUDIT_v1.md,MATCH,current
