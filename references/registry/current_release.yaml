@@ -1,0 +1,21 @@
+# Current operational reference release
+#
+# This file identifies which reference release the benchmark pipeline
+# should treat as the active operational reference.
+#
+# Phase 1 (current): the pipeline reads converted/ paths directly.
+# This file serves as the authoritative declaration of which release
+# those paths correspond to.
+#
+# Phase 2 (future): the pipeline will resolve reference paths from
+# this file, allowing release_version to select v1, v2, etc.
+
+release_version: v1
+release_name: fetal_lung_v1
+
+# Operational paths (Phase 1 aliases)
+expression_path: converted/reference_RNA.h5ad
+metadata_path: converted/reference_metadata_v1.csv
+
+# Registry cross-reference
+registry_file: references/registry/REFERENCE_REGISTRY.csv
