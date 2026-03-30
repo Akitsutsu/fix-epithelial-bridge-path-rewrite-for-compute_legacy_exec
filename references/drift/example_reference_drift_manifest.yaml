@@ -1,0 +1,47 @@
+# Example reference drift report configuration
+#
+# This file documents the expected inputs for run_reference_drift_report_v1.py.
+# It is not read by the script — all values are passed as CLI arguments.
+
+# ── Required inputs ──────────────────────────────────────────────────────────
+
+# Candidate directory (produced by build_reference_candidate_v1.R +
+# extract_reference_metadata_candidate_v1.py)
+candidate_dir: references/candidates/2026-04-early-only
+
+# Output directory for drift report artifacts
+outdir: references/drift/2026-04-early-only
+
+# Tag for output file naming
+tag: 2026-04-early-only
+
+# ── Optional inputs ──────────────────────────────────────────────────────────
+
+# Release version to compare against (default: current)
+# Resolved from references/registry/current_release.yaml
+release_version: current
+
+# Comparison mode: structural, benchmark, or both
+mode: both
+
+# Query IDs for benchmark comparison (default: BU3,CA1)
+query_id: BU3,CA1
+
+# ── Required for benchmark/both mode ─────────────────────────────────────────
+
+manifest: query_manifest_v1.csv
+whole_lung_cmd_template_file: whole_lung_cmd_template_v1.txt
+epi_cmd_template_file: epithelial_cmd_template_v1.txt
+
+# ── Expected outputs ─────────────────────────────────────────────────────────
+
+# Structural mode:
+#   REFERENCE_DRIFT_REPORT_<tag>.md
+#   reference_drift_summary_<tag>.json
+#   release_vs_candidate_structural_diff_<tag>.csv
+
+# Benchmark mode (appended):
+#   anchor_key_metrics_diff_<tag>.csv
+#   benchmark_drift_summary_<tag>.json (merged into main summary)
+#   benchmark_release/                 (full release benchmark run)
+#   benchmark_candidate/               (full candidate benchmark run)
