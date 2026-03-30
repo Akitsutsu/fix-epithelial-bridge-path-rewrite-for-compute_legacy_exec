@@ -1,0 +1,82 @@
+# Example release promotion decision record
+#
+# This file shows the expected schema for a promotion decision.
+# All values below are illustrative placeholders — no real promotion
+# decision has been made.
+#
+# To create a real decision record, copy this file and fill in actual
+# values from a completed candidate build and drift report.
+
+# ── Candidate identification ─────────────────────────────────────────────────
+
+candidate_tag: 2026-04-early-only
+candidate_dir: references/candidates/2026-04-early-only
+base_release_version: v1
+proposed_release_version: v2
+
+# ── Drift report artifacts ───────────────────────────────────────────────────
+
+drift_report_md: references/drift/2026-04-early-only/REFERENCE_DRIFT_REPORT_2026-04-early-only.md
+drift_summary_json: references/drift/2026-04-early-only/reference_drift_summary_2026-04-early-only.json
+structural_diff_csv: references/drift/2026-04-early-only/release_vs_candidate_structural_diff_2026-04-early-only.csv
+anchor_key_metrics_diff_csv: references/drift/2026-04-early-only/anchor_key_metrics_diff_2026-04-early-only.csv
+
+# ── Anchor queries ───────────────────────────────────────────────────────────
+
+anchor_queries:
+  - BU3
+  - CA1
+
+# ── Must-pass checks ─────────────────────────────────────────────────────────
+#
+# These correspond to the must-pass criteria in REFERENCE_PROMOTION_CRITERIA_v1.md.
+# Fill in pass/fail based on drift report evidence.
+
+must_pass:
+  rebuildable: true
+  required_metadata_columns_present: true
+  codebook_decoding_clean: true
+  source_and_versions_recorded: true
+  existing_releases_unchanged: true
+  x_non_negative: true
+
+# ── Explainable-drift summary ────────────────────────────────────────────────
+#
+# Summarize key drift findings from the drift report.
+# These do not need to be pass/fail — they need explanations.
+
+drift_summary:
+  var_names_identical: true
+  stage_fine_l1_distance: 1.7895
+  state_fine_l1_distance: 0.4456
+  state_coarse_l1_distance: 0.1948
+  CA1_top_stage_match: TODO
+  CA1_top_state_match: TODO
+  BU3_top_stage_match: TODO
+  BU3_top_state_match: TODO
+  CA1_off_target_fraction_diff: TODO
+  BU3_off_target_fraction_diff: TODO
+
+# ── Decision ─────────────────────────────────────────────────────────────────
+
+# Allowed values: promote, hold, reject
+decision: hold
+
+rationale: >
+  Candidate restricts to early gestational weeks only (week_10).
+  Large structural drift is expected and consistent with the filter.
+  Gene space is unchanged. Benchmark drift has not been evaluated yet.
+  Hold pending full benchmark comparison with anchor queries.
+
+required_followups:
+  - run benchmark drift in both mode with BU3 and CA1
+  - review anchor-query top_stage and top_state stability
+  - assess whether early-only reference serves a clear biological purpose
+
+# ── Record metadata ──────────────────────────────────────────────────────────
+
+approver: TODO
+decision_date: "2026-04-15"
+
+# Allowed values: pending_review, pending_followup, decided, superseded
+status: pending_followup
