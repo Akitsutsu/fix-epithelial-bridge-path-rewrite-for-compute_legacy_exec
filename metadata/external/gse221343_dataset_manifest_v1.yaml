@@ -1,0 +1,45 @@
+dataset_id: external_gse221343
+series_accession: GSE221343
+title: >-
+  Single cell RNA sequencing profiles of human iPSC-derived AT1-like cells
+  in 3D cultures
+source_type: iPSC-derived alveolar epithelial organoid (iAT2 / iAT1)
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3' v2)
+platform: GPL18573 (Illumina NextSeq 500)
+status: registered
+priority: next
+query_ready_flag: false
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE221343
+  bioproject: PRJNA913931
+  processed_supplementary:
+    - GSE221343_RAW.tar
+    - GSM6858854_CK+DCI.h5
+    - GSM6858855_YAP5SA_in_CK+DCI.h5
+    - GSM6858856_L+DCI.h5
+  sample_ids:
+    - GSM6858854  # CK+DCI (iAT2 control, 623 cells)
+    - GSM6858855  # YAP5SA in CK+DCI (iAT2 + YAP5SA lentivirus, 1212 cells)
+    - GSM6858856  # L+DCI (iAT1 differentiated, 1539 cells)
+
+publication:
+  pmid: "38642558"
+  doi: 10.1016/j.stem.2024.03.017
+  journal: Cell Stem Cell
+  first_author: Burgess CL
+  year: 2024
+  title: >-
+    Generation of human alveolar epithelial type I cells from pluripotent
+    stem cells
+
+registration_notes: >-
+  Dataset-level registration only. Local raw/supplementary files have NOT
+  been downloaded. Sample sheet v1 has NOT been built. query_ready_flag
+  must remain false until local artifact inspection confirms h5ad structure,
+  gene-space overlap, and raw-count availability. This is the second
+  external organoid intake candidate after GSE237359. Selected for small
+  size (3 samples, ~3400 total cells), clean iPSC-derived alveolar
+  epithelial lineage, and low integration friction.
