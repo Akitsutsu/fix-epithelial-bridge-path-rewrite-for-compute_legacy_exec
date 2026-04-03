@@ -1,0 +1,306 @@
+{
+  "h5ad_path": "/tmp/gsm8229877_0a6wt9ha.h5ad",
+  "n_obs": 9619,
+  "n_vars": 21868,
+  "raw_present": true,
+  "raw_n_vars": 21868,
+  "obs_columns": [
+    "Souporcell4_status",
+    "Souporcell4_assignment",
+    "percent_mito",
+    "n_counts",
+    "n_genes",
+    "batch",
+    "doublet_scores",
+    "bh_pval",
+    "S_score",
+    "G2M_score",
+    "phase",
+    "leiden",
+    "predicted_labels",
+    "over_clustering",
+    "majority_voting",
+    "conf_score",
+    "leiden_R",
+    "celltype",
+    "donor"
+  ],
+  "donor_candidates": [
+    {
+      "column": "donor",
+      "recognized_donor_cells": 7827,
+      "recognized_donors": [
+        "15934",
+        "16011",
+        "16392",
+        "16402"
+      ],
+      "n_unique_recognized_donors": 4,
+      "top_values": [
+        "HDBR16392:3349",
+        "HDBR15934:2170",
+        "HDBR16402:2046",
+        "doublets:1757",
+        "HDBR16011:262",
+        ":35"
+      ],
+      "score": [
+        4,
+        -0.18629795197005927,
+        7827
+      ]
+    },
+    {
+      "column": "G2M_score",
+      "recognized_donor_cells": 6,
+      "recognized_donors": [
+        "15934",
+        "16011",
+        "16392",
+        "16402"
+      ],
+      "n_unique_recognized_donors": 4,
+      "top_values": [
+        "-0.1615771301530555:1",
+        "-0.08502773991211154:1",
+        "-0.17426695636005435:1",
+        "-0.12414992516710421:1",
+        "-0.2086956287752537:1",
+        "-0.1968527247526138:1",
+        "-0.14994399812012538:1",
+        "0.3174446878791495:1",
+        "0.3531653279695187:1",
+        "-0.1880104038497843:1",
+        "-0.13377930866371113:1",
+        "0.13229736915001505:1"
+      ],
+      "score": [
+        4,
+        -0.9993762345358145,
+        6
+      ]
+    },
+    {
+      "column": "S_score",
+      "recognized_donor_cells": 10,
+      "recognized_donors": [
+        "15934",
+        "16392",
+        "16402"
+      ],
+      "n_unique_recognized_donors": 3,
+      "top_values": [
+        "-0.011147166797533886:1",
+        "-0.15452907704061455:1",
+        "-0.09715524707411485:1",
+        "-0.07032823076525938:1",
+        "-0.08284888972962726:1",
+        "-0.11988356796283167:1",
+        "-0.06903516473562918:1",
+        "0.2666888404983753:1",
+        "0.4052448272705078:1",
+        "-0.08601124502694338:1",
+        "-0.11523729141696536:1",
+        "0.4930740892583994:1"
+      ],
+      "score": [
+        3,
+        -0.9989603908930242,
+        10
+      ]
+    },
+    {
+      "column": "conf_score",
+      "recognized_donor_cells": 6,
+      "recognized_donors": [
+        "15934",
+        "16392",
+        "16402"
+      ],
+      "n_unique_recognized_donors": 3,
+      "top_values": [
+        "0.9996241315237333:1",
+        "0.6707149720957765:1",
+        "0.755055869646008:1",
+        "0.9798952655861484:1",
+        "0.6422303808039921:1",
+        "0.8638507062937462:1",
+        "0.994924063983768:1",
+        "0.9855896185533256:1",
+        "0.8557934080264182:1",
+        "0.9889949003189682:1",
+        "0.9588010194998907:1",
+        "0.9931637916743373:1"
+      ],
+      "score": [
+        3,
+        -0.9993762345358145,
+        6
+      ]
+    },
+    {
+      "column": "percent_mito",
+      "recognized_donor_cells": 5,
+      "recognized_donors": [
+        "15934",
+        "16392",
+        "16402"
+      ],
+      "n_unique_recognized_donors": 3,
+      "top_values": [
+        "0.0:4",
+        "0.035714287:3",
+        "0.029411765:3",
+        "0.03448276:2",
+        "0.00657277:2",
+        "0.0625:2",
+        "0.001572327:2",
+        "0.03167421:2",
+        "0.02232143:2",
+        "0.022900764:2",
+        "0.0070921984:2",
+        "0.014988897:2"
+      ],
+      "score": [
+        3,
+        -0.9994801954465121,
+        5
+      ]
+    },
+    {
+      "column": "Souporcell4_status",
+      "recognized_donor_cells": 0,
+      "recognized_donors": [],
+      "n_unique_recognized_donors": 0,
+      "top_values": [
+        "singlet:7826",
+        "doublet:1705",
+        "unassigned:53",
+        ":35"
+      ],
+      "score": [
+        0,
+        -1.0,
+        0
+      ]
+    },
+    {
+      "column": "Souporcell4_assignment",
+      "recognized_donor_cells": 0,
+      "recognized_donors": [],
+      "n_unique_recognized_donors": 0,
+      "top_values": [
+        "2:3349",
+        "0:2170",
+        "3:2046",
+        "doublets:1757",
+        "1:262",
+        ":35"
+      ],
+      "score": [
+        0,
+        -1.0,
+        0
+      ]
+    },
+    {
+      "column": "over_clustering",
+      "recognized_donor_cells": 0,
+      "recognized_donors": [],
+      "n_unique_recognized_donors": 0,
+      "top_values": [
+        "1:169",
+        "2:148",
+        "3:144",
+        "5:137",
+        "7:134",
+        "6:134",
+        "8:131",
+        "9:131",
+        "10:131",
+        "11:130",
+        "4:130",
+        "12:125"
+      ],
+      "score": [
+        0,
+        -1.0,
+        0
+      ]
+    }
+  ],
+  "chosen_donor_column": "donor",
+  "souporcell_candidates": [
+    {
+      "column": "Souporcell4_status",
+      "top_values": [
+        "singlet:7826",
+        "doublet:1705",
+        "unassigned:53",
+        ":35"
+      ]
+    },
+    {
+      "column": "Souporcell4_assignment",
+      "top_values": [
+        "2:3349",
+        "0:2170",
+        "3:2046",
+        "doublets:1757",
+        "1:262",
+        ":35"
+      ]
+    },
+    {
+      "column": "doublet_scores",
+      "top_values": [
+        "0.13228699551569506:198",
+        "0.18297872340425528:194",
+        "0.2238805970149254:189",
+        "0.13599999999999995:187",
+        "0.11566018423746159:185",
+        "0.16170763260025872:184",
+        "0.20879120879120874:182",
+        "0.14805825242718443:181",
+        "0.10700389105058364:180",
+        "0.2018348623853211:180",
+        "0.12526997840172788:180",
+        "0.18895348837209291:179"
+      ]
+    },
+    {
+      "column": "over_clustering",
+      "top_values": [
+        "1:169",
+        "2:148",
+        "3:144",
+        "5:137",
+        "7:134",
+        "6:134",
+        "8:131",
+        "9:131",
+        "10:131",
+        "11:130",
+        "4:130",
+        "12:125"
+      ]
+    }
+  ],
+  "chosen_souporcell_column": "Souporcell4_status",
+  "donor_counts_all": {
+    "15934": 2170,
+    "16011": 262,
+    "16392": 3349,
+    "16402": 2046
+  },
+  "donor_counts_usable": {
+    "15934": 2170,
+    "16011": 261,
+    "16392": 3349,
+    "16402": 2046
+  },
+  "excluded_status_counts": {
+    "doublet": 1705,
+    "unassigned": 53
+  }
+}

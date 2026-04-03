@@ -30,3 +30,7 @@ logs/
 
 # Archives
 *.tar.gz
+
+# unstable generated runs / workarounds
+benchmark_run_gse237359_vs_*
+benchmark_run_*_symlink/
