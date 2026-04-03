@@ -719,7 +719,9 @@ def build_key_metrics_row(
             whole.get("n_query_epi_eligible"), epi.get("n_query_epi_eligible")
         ),
         "lineage_off_target_fraction": _pick_present(
-            whole.get("lineage_off_target_fraction"), epi.get("lineage_off_target_fraction")
+            whole.get("off_target_fraction"),
+            whole.get("lineage_off_target_fraction"),
+            epi.get("lineage_off_target_fraction"),
         ),
         "top_stage": _pick_present(
             whole.get("top_stage"),
