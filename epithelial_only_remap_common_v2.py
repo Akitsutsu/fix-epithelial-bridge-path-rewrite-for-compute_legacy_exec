@@ -140,8 +140,13 @@ def _rewrite_epi_legacy_source(
     debug: Dict[str, object] = {}
     out = source
 
-    # Replace constant assignments when present.
+    # Step 1: Prefix token replacement FIRST, on the original source.
+    # This changes output-filename prefixes (BU3_/CA1_ → query_id_) without
+    # corrupting paths that will be inserted by later steps.
+    out, prefix_counts = _replace_prefix_tokens(out, query_id)
+    debug["prefix_token_counts"] = prefix_counts
 
+    # Step 2: Replace constant assignments (definitive — replaces entire RHS).
     out, n_ref = _replace_assignment(
         out, "REFERENCE_H5AD", repr(_legacy_rel(reference, project_root)))
     out, n_meta = _replace_assignment(
@@ -161,8 +166,9 @@ def _rewrite_epi_legacy_source(
         "OUTDIR": n_outdir,
     }
 
-    # Also replace known literals anywhere they appear, including summary JSON.
-    # Input paths stay repo-relative; OUTDIR stays absolute.
+    # Step 3: Literal path replacements (safety net for non-assignment refs).
+    # After prefix replacement, BU3_ tokens are now query_id_ tokens, so use
+    # query_id-based patterns.
     ref_rel = _legacy_rel(reference, project_root)
     meta_rel = _legacy_rel(metadata, project_root)
     qry_rel = _legacy_rel(query_h5ad, project_root)
@@ -173,18 +179,34 @@ def _rewrite_epi_legacy_source(
         {
             "converted/reference_RNA.h5ad": ref_rel,
             "converted/reference_metadata_v1.csv": meta_rel,
-            "converted/query_CA1_clean.h5ad": qry_rel,
-            "converted/query_BU3_clean.h5ad": qry_rel,
-            "prototype_out_v1/CA1_cell_projection_v1.csv": gate_rel,
-            "prototype_out_v1/BU3_cell_projection_v1.csv": gate_rel,
+            f"converted/query_{query_id}_clean.h5ad": qry_rel,
+            f"prototype_out_v1/{query_id}_cell_projection_v1.csv": gate_rel,
             "prototype_out_epi_v1": outdir.as_posix(),
-            "prototype_out_epi_v1_BU3": outdir.as_posix(),
+            f"prototype_out_epi_v1_{query_id}": outdir.as_posix(),
         },
     )
     debug["literal_path_replacements"] = path_counts
 
-    out, prefix_counts = _replace_prefix_tokens(out, query_id)
-    debug["prefix_token_counts"] = prefix_counts
+    # Step 4: Forced outdir override (belt-and-suspenders, matches whole-lung
+    # adapter pattern).
+    forced_outdir_line = f'outdir = Path(r"{outdir.as_posix()}")'
+    out, n_forced_outdir = re.subn(
+        r'(?m)^([ \t]*)outdir\s*=\s*.*$',
+        rf'\1{forced_outdir_line}',
+        out,
+        count=1,
+    )
+    debug["forced_outdir_replacements"] = n_forced_outdir
+    debug["forced_outdir"] = str(outdir)
+
+    # Step 5: Force mkdir parents=True (safety net).
+    out, n_mkdir = re.subn(
+        r'(?m)^([ \t]*)outdir\.mkdir\([^\n]*\)\s*$',
+        r'\1outdir.mkdir(parents=True, exist_ok=True)',
+        out,
+    )
+    debug["outdir_mkdir_replacements"] = n_mkdir
+
     debug["contains_main"] = ("def main(" in out)
     debug["contains_state_fine_output"] = ("_epi_state_fine.csv" in out)
     debug["contains_stage_fine_output"] = ("_epi_stage_fine.csv" in out)
