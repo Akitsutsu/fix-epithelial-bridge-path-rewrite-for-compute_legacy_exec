@@ -34,3 +34,25 @@ logs/
 # unstable generated runs / workarounds
 benchmark_run_gse237359_vs_*
 benchmark_run_*_symlink/
+benchmark_run_gse237359_manual_compare/
+
+# Raw query downloads
+queries/raw/
+
+# Local data directories
+data/
+objects/
+rebuild_audit_v1/
+qc_png/
+roi_boxes/
+codebook/xtab_*
+config/
+
+# One-shot scratch manifests
+query_manifest_*_minimal_*.csv
+
+# BioMart exports
+mart_export*
+
+# Windows artifacts
+新規*
