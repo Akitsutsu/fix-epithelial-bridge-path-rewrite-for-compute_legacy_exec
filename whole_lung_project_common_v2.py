@@ -16,6 +16,7 @@ it reuses the existing legacy compute logic with a standardized I/O contract.
 
 from __future__ import annotations
 
+import traceback
 import argparse
 import csv
 import json
@@ -119,15 +120,8 @@ def _rewrite_whole_lung_legacy_source(
     debug: Dict[str, object] = {}
     out = source
 
-    # Replace the outdir assignment if present.
-    out, n_outdir = re.subn(
-        r'(?m)^outdir\s*=\s*Path\((?:"[^"]*"|\'[^\']*\')\)\s*$',
-        f"outdir = Path({outdir.as_posix()!r})",
-        out,
-    )
-    debug["outdir_assignment_replacements"] = n_outdir
-
-    # Replace known literal paths anywhere they appear.
+    # まず literal path と prefix token を処理する
+    # （forced outdir を先に入れると、この後の prefix 置換で壊れうるため）
     out, path_counts = _replace_path_literals(
         out,
         {
@@ -143,12 +137,35 @@ def _rewrite_whole_lung_legacy_source(
     out, prefix_counts = _replace_prefix_tokens(out, query_id)
     debug["prefix_token_counts"] = prefix_counts
 
-    # Basic sanity signals.
+    # forced combined-root outdir は最後に上書きする
+    forced_outdir_line = f'outdir = Path(r"{outdir.as_posix()}")'
+    out, n_outdir = re.subn(
+        r'(?m)^([ \t]*)outdir\s*=\s*.*$',
+        rf'\1{forced_outdir_line}',
+        out,
+        count=1,
+    )
+    debug["outdir_assignment_replacements"] = n_outdir
+    debug["forced_outdir"] = str(outdir)
+
+    # mkdir は parents=True に強制
+    out, n_mkdir = re.subn(
+        r'(?m)^([ \t]*)outdir\.mkdir\([^\n]*\)\s*$',
+        r'\1outdir.mkdir(parents=True, exist_ok=True)',
+        out,
+    )
+    debug["outdir_mkdir_replacements"] = n_mkdir
+
+    if n_outdir == 0:
+        raise UserFacingError(
+            f"failed to rewrite legacy whole-lung outdir assignment for {query_id}"
+        )
+
+    debug["contains_forced_outdir"] = forced_outdir_line in out
     debug["contains_read_h5ad"] = ("read_h5ad" in out)
     debug["contains_summary_output"] = ("_summary_v1.json" in out)
     debug["contains_projection_output"] = ("_cell_projection_v1.csv" in out)
     return out, debug
-
 
 def run_compute_legacy_exec(
     *,
@@ -175,6 +192,28 @@ def run_compute_legacy_exec(
     summary_path = outdir / f"{query_id}_summary_v1.json"
     projection_path = outdir / f"{query_id}_cell_projection_v1.csv"
 
+    run_root = outdir.parent.parent
+    debug_dir = run_root / "logs" / query_id
+    debug_dir.mkdir(parents=True, exist_ok=True)
+
+    rewritten_debug_path = debug_dir / f"{query_id}_whole_lung_rewritten_debug.py"
+    rewritten_debug_path.write_text(rewritten, encoding="utf-8")
+
+    preexec_meta = {
+        "legacy_script": str(legacy_script),
+        "query_id": query_id,
+        "outdir": str(outdir),
+        "summary": str(summary_path),
+        "projection": str(projection_path),
+        "rewritten_debug_path": str(rewritten_debug_path),
+        "rewrite_debug": debug,
+    }
+    preexec_meta_path = debug_dir / f"{query_id}_whole_lung_adapter_meta.preexec.json"
+    preexec_meta_path.write_text(
+        json.dumps(preexec_meta, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     ns = {
         "__name__": "__main__",
         "__file__": str(legacy_script),
@@ -183,7 +222,15 @@ def run_compute_legacy_exec(
     old_argv = sys.argv[:]
     sys.argv = [str(legacy_script)]
     try:
-        exec(compile(rewritten, str(legacy_script), "exec"), ns, ns)
+        # traceback filename を debug script にしておく
+        exec(compile(rewritten, str(rewritten_debug_path), "exec"), ns, ns)
+    except Exception as e:
+        tb_path = debug_dir / f"{query_id}_whole_lung_exec_traceback.txt"
+        tb_path.write_text(traceback.format_exc(), encoding="utf-8")
+        raise UserFacingError(
+            f"legacy whole-lung compute failed for {query_id}; "
+            f"see {tb_path} and {rewritten_debug_path}"
+        ) from e
     finally:
         sys.argv = old_argv
 
@@ -192,6 +239,7 @@ def run_compute_legacy_exec(
         raise UserFacingError(
             "legacy whole-lung compute finished but expected outputs are missing: "
             + ", ".join(missing)
+            + f" | rewritten_debug={rewritten_debug_path}"
         )
 
     return {
@@ -199,6 +247,8 @@ def run_compute_legacy_exec(
         "summary": str(summary_path),
         "projection": str(projection_path),
         "rewrite_debug": debug,
+        "rewritten_debug_path": str(rewritten_debug_path),
+        "preexec_meta_path": str(preexec_meta_path),
         "note": "Whole-lung outputs computed by in-memory execution of rewritten legacy source.",
     }
 
