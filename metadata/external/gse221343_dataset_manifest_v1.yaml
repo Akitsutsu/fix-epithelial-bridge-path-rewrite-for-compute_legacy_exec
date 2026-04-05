@@ -7,7 +7,7 @@ source_type: iPSC-derived alveolar epithelial organoid (iAT2 / iAT1)
 organism: Homo sapiens
 modality: scRNA (10x Chromium Single Cell 3' v2)
 platform: GPL18573 (Illumina NextSeq 500)
-status: registered
+status: converted_local_validation_pending_review
 priority: next
 query_ready_flag: false
 reference_basis: converted/reference_RNA.h5ad
@@ -43,3 +43,12 @@ registration_notes: >-
   external organoid intake candidate after GSE237359. Selected for small
   size (3 samples, ~3400 total cells), clean iPSC-derived alveolar
   epithelial lineage, and low integration friction.
+
+conversion_notes: >-
+  H5 to H5AD conversion completed 2026-04-05.
+  All 3 samples: CellRanger filtered H5, int32 raw counts, 58398 Gene
+  Expression features, 28378/30852 (92.0%) reference gene overlap.
+  1543 duplicate gene names resolved via var_names_make_unique.
+  Conversion script: queries/converted/gse221343/convert_gse221343_h5_to_h5ad.py.
+  qc_status set to local_validation_inspected_manual_review_required.
+  query_ready_flag remains false pending explicit reviewer promotion.
