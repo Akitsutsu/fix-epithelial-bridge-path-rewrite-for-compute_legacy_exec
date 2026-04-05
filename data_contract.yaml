@@ -1,0 +1,186 @@
+version: 0.1.0
+status: draft
+owner: repo-root
+purpose: >-
+  Minimal authoritative contract for the current operational repo state.
+  This file defines the objects, fields, enums, and invariants that other
+  documents and agents should treat as canonical unless a newer logged
+  decision explicitly changes them.
+
+project:
+  repo_name: fix-epithelial-bridge-path-rewrite-for-compute_legacy_exec
+  stage_axis: sample_week
+  current_release_version: v1
+  canonical_mode: combined_root_v2
+
+reference:
+  current_release_alias:
+    file: references/registry/current_release.yaml
+    required_fields:
+      - release_version
+      - release_name
+      - expression_path
+      - metadata_path
+      - registry_file
+    current_values:
+      release_version: v1
+      release_name: fetal_lung_v1
+      expression_path: converted/reference_RNA.h5ad
+      metadata_path: converted/reference_metadata_v1.csv
+
+  registry:
+    file: references/registry/REFERENCE_REGISTRY.csv
+    required_columns:
+      - release_version
+      - release_name
+      - expression_path
+      - metadata_path
+      - source_dataset
+      - source_file
+      - stage_axis
+      - build_script
+      - metadata_script
+      - audit_doc
+      - audit_verdict
+      - status
+
+  invariants:
+    - Published release artifacts are immutable.
+    - A release is the pair (expression matrix, metadata table), not a single file.
+    - Stage axis for operational interpretation is sample_week.
+    - Candidate references may be rebuilt; releases may not be overwritten.
+
+execution:
+  canonical_scripts:
+    benchmark_runner: benchmark_common_runner_v2.py
+    whole_lung_bridge: whole_lung_project_common_v2.py
+    epithelial_bridge: epithelial_only_remap_common_v2.py
+    whole_lung_template_compute_legacy: whole_lung_cmd_template_compute_legacy_v1.txt
+    epithelial_template_compute_legacy: epithelial_cmd_template_compute_legacy_v1.txt
+  invariants:
+    - combined-root execution is canonical
+    - benchmark comparisons should use the canonical v2 path
+    - old helpers may exist historically but are not authoritative
+
+query_registry:
+  manifest:
+    file: query_manifest_v1.csv
+    required_columns:
+      - query_id
+      - h5ad_path
+      - note
+      - enabled
+      - group_label
+      - expected_sample_id
+      - expected_donor_id
+      - expected_source_type
+      - expected_batch_id
+  anchor_queries:
+    - CA1
+    - BU3
+  invariants:
+    - CA1 and BU3 are anchor queries, not a cohort.
+    - Query IDs must be stable once used in benchmark regression.
+    - Query-level provenance must remain reviewable after extraction.
+
+external_intake:
+  dataset_manifest_glob: metadata/external/*_dataset_manifest_v*.yaml
+  sample_sheet_glob: metadata/external/*_organoid_query_sample_sheet_v*.tsv
+  core_required_columns:
+    - query_dataset_id
+    - query_dataset_title
+    - source_accession
+    - local_query_set_id
+    - local_query_sample_id
+    - source_sample_id
+    - source_sample_name
+    - sample_role
+    - sample_include_flag
+    - species
+    - source_type
+    - modality
+    - raw_counts_available
+    - processed_object_available
+    - source_processed_object_type
+    - source_processed_object_path_or_url
+    - output_h5ad_path
+    - cell_count_pre_qc
+    - cell_count_post_qc
+    - gene_count
+    - reference_compatibility_tier
+    - intended_analysis_role
+    - query_ready_flag
+    - qc_status
+    - notes
+  invariants:
+    - Registration does not imply query-readiness.
+    - query_ready_flag may only be true after local validation and explicit review.
+    - Paper expectations may guide review but do not substitute for validation.
+    - Donor-split rows must declare that they come from a donor-resolved export.
+
+accepted_external_tranches:
+  gse237359:
+    status: accepted_fixed
+    role: donor_resolved_external_validation
+  gse221343:
+    status: registered_not_validated
+    role: next_external_intake_candidate
+
+spatial:
+  role: supportive_evidence_only
+  invariants:
+    - Spatial objects support plausibility checks.
+    - Spatial results do not silently redefine release reference semantics.
+    - Strong localization claims require separate explicit review.
+
+enums:
+  qc_status:
+    allowed_now:
+      - registered_not_validated
+      - donor_split_exported
+      - local_validation_inspected_manual_review_required
+      - local_validation_failed_manual_review_required
+    rule: >-
+      Additions require a decision-log entry before becoming canonical.
+  query_ready_flag:
+    allowed:
+      - true
+      - false
+  intended_analysis_role:
+    allowed_now:
+      - nearest_external_validation
+      - donor_resolved_external_validation
+  source_type_examples:
+    observed_now:
+      - organoid
+      - iPSC-derived iAT2 organoid (control CKDCI medium)
+      - iPSC-derived iAT2 organoid (YAP5SA lentivirus + CKDCI)
+      - iPSC-derived iAT1 organoid (LDCI differentiation medium)
+
+promotion_rules:
+  release_promotion:
+    requires:
+      - candidate build artifact
+      - audit artifact
+      - drift review artifact
+      - explicit decision log entry
+  sample_promotion:
+    query_ready_requires:
+      - local conversion or validated processed object
+      - obs/var inspection
+      - counts/layer semantics check
+      - provenance retained in sample sheet
+      - explicit reviewer decision
+
+change_management:
+  update_required_when:
+    - a canonical path changes
+    - a new release becomes current
+    - a new enum value is normalized
+    - a new external tranche changes accepted status
+    - a schema field becomes required
+  companion_docs:
+    - research_scope.md
+    - decision_log.md
+    - AGENTS.md
+    - CLAUDE.md
