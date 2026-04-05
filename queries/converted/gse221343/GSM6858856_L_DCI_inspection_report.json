@@ -1,0 +1,39 @@
+{
+  "source_h5": "queries/raw/gse221343/GSM6858856_L+DCI.h5",
+  "output_h5ad": "queries/converted/gse221343/GSM6858856_L_DCI.h5ad",
+  "n_obs": 4748,
+  "n_vars": 58398,
+  "X_dtype": "float32",
+  "X_is_sparse": true,
+  "X_is_integer_valued": true,
+  "raw_present": true,
+  "raw_shape": [
+    4748,
+    58398
+  ],
+  "counts_layer_present": true,
+  "layers": [
+    "counts"
+  ],
+  "obs_columns": [
+    "query_dataset_id",
+    "local_query_sample_id",
+    "source_sample_name",
+    "source_type",
+    "donor_id",
+    "species"
+  ],
+  "var_columns": [
+    "gene_ids",
+    "feature_types",
+    "genome"
+  ],
+  "reference_gene_count": 30852,
+  "query_gene_expression_count": 58398,
+  "overlap_with_reference": 28378,
+  "overlap_pct_of_reference": 92.0,
+  "ref_only_genes": 2474,
+  "query_only_genes": 30020,
+  "conversion_date": "2026-04-05",
+  "conversion_script": "queries/converted/gse221343/convert_gse221343_h5_to_h5ad.py"
+}
