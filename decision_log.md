@@ -119,3 +119,25 @@ Append-only project decision log.
 - Consequences:
   - Agents and humans will have a smaller and more stable entry surface.
   - Existing provenance docs remain valid but become referenced artifacts rather than the first place people look.
+
+## D-0010 — GSE221343 promoted to query-ready after explicit reviewer review
+- Status: accepted
+- Scope: intake
+- Date: 2026-04-06
+- Decision:
+  - All 3 GSE221343 rows promoted to `query_ready_flag=true`:
+    - `GSM6858854_CK_DCI`
+    - `GSM6858855_YAP5SA_CK_DCI`
+    - `GSM6858856_L_DCI`
+  - Dataset-level `query_ready_flag=true`, status changed to `accepted_query_ready`.
+  - Tranche status in `data_contract.yaml` updated from `registered_not_validated` to `accepted_query_ready`.
+- Why:
+  - Gate A (object contract), Gate B (provenance), Gate C (projection smoke test on v1), and Gate D (within-tranche biology coherence) all passed.
+  - Whole-lung and epithelial projections completed on canonical combined-root v2 path.
+  - All 3 samples project to Epithelial (95–99%) at late_GW17_19/week_18 stage.
+  - iAT1 differentiation (L+DCI) shows distinct state (SOX2lowCFTR+) vs iAT2 samples — condition difference interpretable.
+  - This is an explicit reviewer decision, not an auto-promotion from paper metadata.
+- Consequences:
+  - GSE221343 rows enter the comparison world for biology narratives.
+  - Review artifacts at `reports/tranches/gse221343_query_ready_review_v1/`.
+  - Next external intake candidates can follow the same Gate A–D review path.
