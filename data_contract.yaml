@@ -123,8 +123,8 @@ accepted_external_tranches:
     status: accepted_fixed
     role: donor_resolved_external_validation
   gse221343:
-    status: registered_not_validated
-    role: next_external_intake_candidate
+    status: accepted_query_ready
+    role: nearest_external_validation
 
 spatial:
   role: supportive_evidence_only

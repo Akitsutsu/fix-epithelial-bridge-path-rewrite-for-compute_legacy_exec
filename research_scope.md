@@ -41,8 +41,8 @@ Interpretation shorthand:
 ### Canonical external tranches
 - Accepted and fixed:
   - `GSE237359` donor-resolved external validation tranche
-- Registered but not yet query-ready:
-  - `GSE221343`
+- Accepted and query-ready:
+  - `GSE221343` nearest external validation tranche (promoted 2026-04-06)
 
 ### Canonical validation layer
 - Spatial data are a validation / supportive-evidence layer.
@@ -99,7 +99,7 @@ Out of scope:
 
 ## Near-term priorities
 1. Make repo-level contracts explicit.
-2. Finish local validation / conversion for `GSE221343`.
+2. ~~Finish local validation / conversion for `GSE221343`.~~ Done (D-0010).
 3. Continue external organoid intake under the same provenance rules.
 4. Keep spatial as supportive evidence rather than the main growth axis.
 
