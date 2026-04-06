@@ -43,6 +43,7 @@ Interpretation shorthand:
   - `GSE237359` donor-resolved external validation tranche
 - Accepted and query-ready:
   - `GSE221343` nearest external validation tranche (promoted 2026-04-06)
+  - `GSE289846` cross-lab external validation tranche (promoted 2026-04-06)
 
 ### Canonical validation layer
 - Spatial data are a validation / supportive-evidence layer.
