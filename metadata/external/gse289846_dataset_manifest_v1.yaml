@@ -1,0 +1,79 @@
+dataset_id: external_gse289846
+series_accession: GSE289846
+title: >-
+  The iPSC-derived pulmonary epithilial cells in micro-patterned culture plate
+  [scRNA-seq]
+source_type: iPSC-derived alveolar/airway epithelial organoid
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3' v3.1)
+platform: GPL24676 (Illumina NovaSeq 6000)
+status: registered
+priority: next
+query_ready_flag: false
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE289846
+  bioproject: not checked
+  processed_supplementary:
+    - GSE289846_3i_Day7_barcodes.tsv.gz
+    - GSE289846_3i_Day7_features.tsv.gz
+    - GSE289846_3i_Day7_matrix.mtx.gz
+    - GSE289846_3i_LATS_Day14_barcodes.tsv.gz
+    - GSE289846_3i_LATS_Day14_features.tsv.gz
+    - GSE289846_3i_LATS_Day14_matrix.mtx.gz
+    - GSE289846_3i_PAL_Day14_barcodes.tsv.gz
+    - GSE289846_3i_PAL_Day14_features.tsv.gz
+    - GSE289846_3i_PAL_Day14_matrix.mtx.gz
+  sample_ids:
+    - GSM8800133  # 3i_LATS_1_Day14 (replicate 1)
+    - GSM8800134  # 3i_LATS_2_Day14 (replicate 2)
+    - GSM8800135  # 3i_PAL_1_Day14 (replicate 1)
+    - GSM8800136  # 3i_PAL_2_Day14 (replicate 2)
+    - GSM8800137  # 3i_1_Day7 (replicate 1)
+    - GSM8800138  # 3i_2_Day7 (replicate 2)
+
+publication:
+  pmid: "41680175"
+  doi: 10.1038/s41467-026-68909-z
+  journal: Nature Communications
+  first_author: Tsutsui Y
+  year: 2026
+  title: >-
+    Human iPSC-based Modeling of Pulmonary Fibrosis Reveals p300/CBP Inhibition
+    Suppresses Alveolar Transitional Cell State
+
+why_this_dataset: >-
+  First non-BU/non-Rawlins independent-lab candidate for the comparison world.
+  Gotoh lab (CiRA, Kyoto University) iPSC-derived alveolar organoids on
+  micro-patterned plates with 3 differentiation conditions (AT2 baseline,
+  AT1 induction via LATS-IN-1, transitional state via PAL). Adds cross-lab
+  replication and an AT1/AT2 transitional axis not present in existing tranches.
+  Complements GSE221343 (Kotton/BU, CK+DCI/YAP5SA/L+DCI) with a different
+  protocol and iPSC line.
+
+added_value_vs_existing_world: >-
+  Cross-lab replication (Kyoto vs Boston); AT1/AT2/transitional condition axis;
+  different iPSC line (B2-3 vs SPC2-ST-B2); different differentiation protocol
+  (micro-patterned plate + LATS inhibition vs Matrigel alveolosphere + LDCI).
+
+low_friction_notes: >-
+  3 condition-level CellRanger mtx triplets publicly available as series-level
+  supplementary. 10x Chromium 3' v3.1, CellRanger 7.1.0, hg38. No mixed
+  organ/species issues. Clear condition naming.
+
+public_artifact_situation: >-
+  Supplementary count matrices are condition-level (3 triplets), not
+  per-GSM-replicate (6 triplets). Each condition merges 2 biological replicates.
+  Per-GSM supplementary files are NONE. Replicate-level separation would
+  require barcode suffix parsing or SRA FASTQ re-processing. Registration v1
+  uses condition-level 3 rows as canonical registry units.
+
+registration_notes: >-
+  Dataset-level registration only. Raw supplementary files have NOT been
+  downloaded. Sample sheet v1 has NOT been built beyond registration rows.
+  query_ready_flag must remain false until local artifact inspection confirms
+  h5ad structure, gene-space overlap, and raw-count availability. This is the
+  third external organoid intake candidate after GSE237359 and GSE221343.
+  Selected for independent-lab cross-validation value (Gotoh lab, CiRA Kyoto),
+  3-condition alveolar differentiation axis, and low integration friction.
