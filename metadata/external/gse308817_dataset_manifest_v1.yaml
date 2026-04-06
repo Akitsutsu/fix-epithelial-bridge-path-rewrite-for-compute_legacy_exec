@@ -7,7 +7,7 @@ source_type: hESC-derived alveolar organoid (H9 line)
 organism: Homo sapiens
 modality: scRNA (SeekOne Single Cell Whole Transcriptome)
 platform: GPL24676 (Illumina NovaSeq 6000)
-status: registered
+status: converted_local_validation_pending_review
 priority: next
 query_ready_flag: false
 reference_basis: converted/reference_RNA.h5ad
@@ -86,3 +86,13 @@ registration_notes: >-
   NOTE: publication citation is missing — no PMID or DOI linked. NOTE:
   library prep is SeekOne (not 10x Chromium) — gene-space compatibility
   must be explicitly verified during conversion.
+
+conversion_notes: >-
+  Mtx-to-H5AD conversion completed 2026-04-06. All 3 passages: SeekSoulTools
+  v1.2.2 per-GSM mtx triplets, int64 raw counts, 36601 Gene Expression
+  features, 30843/30852 (100.0%) reference gene overlap. SeekOne gene-space
+  confirmed fully compatible with 10x-based reference despite different
+  library prep platform. Conversion script:
+  queries/converted/gse308817/convert_gse308817_mtx_to_h5ad.py. qc_status
+  set to local_validation_inspected_manual_review_required. query_ready_flag
+  remains false pending explicit reviewer promotion.

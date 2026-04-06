@@ -1,0 +1,39 @@
+{
+  "source_files": "queries/raw/gse308817/GSM9253578_ALOp3_*.gz",
+  "output_h5ad": "queries/converted/gse308817/GSE308817_ALOp3.h5ad",
+  "n_obs": 18218,
+  "n_vars": 36601,
+  "X_dtype": "int64",
+  "X_is_sparse": true,
+  "X_is_integer_valued": true,
+  "raw_present": true,
+  "raw_shape": [
+    18218,
+    36601
+  ],
+  "counts_layer_present": true,
+  "layers": [
+    "counts"
+  ],
+  "obs_columns": [
+    "query_dataset_id",
+    "local_query_sample_id",
+    "source_sample_name",
+    "source_type",
+    "donor_id",
+    "species"
+  ],
+  "var_columns": [
+    "gene_ids",
+    "feature_types"
+  ],
+  "reference_gene_count": 30852,
+  "query_gene_expression_count": 36601,
+  "overlap_with_reference": 30843,
+  "overlap_pct_of_reference": 100.0,
+  "ref_only_genes": 9,
+  "query_only_genes": 5758,
+  "platform_note": "SeekOne (SeekGene), not 10x Chromium; processed with SeekSoulTools v1.2.2",
+  "conversion_date": "2026-04-06",
+  "conversion_script": "queries/converted/gse308817/convert_gse308817_mtx_to_h5ad.py"
+}
