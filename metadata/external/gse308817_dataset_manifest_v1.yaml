@@ -1,0 +1,88 @@
+dataset_id: external_gse308817
+series_accession: GSE308817
+title: >-
+  Human Pluripotent Stem Cell-Derived Alveolar Organoids for Gene-editing
+  and Lung Adenocarcinomas Modeling
+source_type: hESC-derived alveolar organoid (H9 line)
+organism: Homo sapiens
+modality: scRNA (SeekOne Single Cell Whole Transcriptome)
+platform: GPL24676 (Illumina NovaSeq 6000)
+status: registered
+priority: next
+query_ready_flag: false
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE308817
+  bioproject: PRJNA1332757
+  processed_supplementary:
+    - GSE308817_RAW.tar
+  per_sample_files:
+    - GSM9253578_ALOp3_barcodes.tsv.gz
+    - GSM9253578_ALOp3_features.tsv.gz
+    - GSM9253578_ALOp3_matrix.mtx.gz
+    - GSM9253579_ALOp7_barcodes.tsv.gz
+    - GSM9253579_ALOp7_features.tsv.gz
+    - GSM9253579_ALOp7_matrix.mtx.gz
+    - GSM9253580_ALOp20_barcodes.tsv.gz
+    - GSM9253580_ALOp20_features.tsv.gz
+    - GSM9253580_ALOp20_matrix.mtx.gz
+  sample_ids:
+    - GSM9253578  # ALOp3 (passage 3, early)
+    - GSM9253579  # ALOp7 (passage 7, middle)
+    - GSM9253580  # ALOp20 (passage 20, late)
+
+publication:
+  pmid: ""
+  doi: ""
+  journal: ""
+  first_author: ""
+  year: ""
+  title: ""
+  citation_status: >-
+    No PMID or DOI linked to this GEO series as of last update 2025-12-22.
+    GEO title suggests a paper on hPSC-derived alveolar organoids for
+    gene-editing and LUAD modeling. Citation may appear later. Do not
+    infer publication details from GEO title alone.
+
+why_this_dataset: >-
+  Fourth external intake candidate. Independent lab (Liu/Rong, Xiamen
+  University) with hESC-derived (H9) alveolar organoids at 3 passage
+  timepoints (P3/P7/P20). Adds passage/maturation axis not present in
+  existing tranches. Long-term expandability (>30 passages) distinguishes
+  this system from existing Matrigel-based or micro-patterned organoids.
+
+added_value_vs_existing_world: >-
+  Third independent lab in comparison world (Xiamen vs BU vs Kyoto);
+  hESC H9 line adds a new stem cell background (vs iPSC SPC2-ST-B2 and
+  B2-3); passage series (P3/P7/P20) adds a maturation/stability axis
+  not covered by existing condition-based tranches.
+
+low_friction_notes: >-
+  3 per-GSM mtx triplets in GSE308817_RAW.tar. Standard sparse matrix
+  format (barcodes/features/matrix). hg38 assembly. Clear per-sample
+  naming (ALOp3, ALOp7, ALOp20).
+
+platform_notes: >-
+  Library preparation used SeekOne Single Cell Whole Transcriptome Kit
+  (SeekGene K00801), NOT 10x Chromium. Data processed with SeekSoulTools
+  v1.2.2 (not CellRanger). Output format is standard 10x-like sparse
+  matrix triplets (barcodes.tsv.gz, features.tsv.gz, matrix.mtx.gz).
+  Compatibility with 10x-based reference pipeline should be verified
+  during local validation — gene naming and feature space may differ.
+
+public_artifact_situation: >-
+  Per-sample mtx triplets available both as individual GSM supplementary
+  files and bundled in GSE308817_RAW.tar. 3 samples = 3 triplets = 9
+  files. Each sample corresponds to one passage (P3, P7, P20).
+
+registration_notes: >-
+  Dataset-level registration only. Raw supplementary files have NOT been
+  downloaded. Sample sheet v1 has NOT been built beyond registration rows.
+  query_ready_flag must remain false until local artifact inspection
+  confirms h5ad structure, gene-space overlap, and raw-count availability.
+  This is the fourth external organoid intake candidate. Selected for
+  independent-lab value, passage/maturation axis, and hESC H9 background.
+  NOTE: publication citation is missing — no PMID or DOI linked. NOTE:
+  library prep is SeekOne (not 10x Chromium) — gene-space compatibility
+  must be explicitly verified during conversion.
