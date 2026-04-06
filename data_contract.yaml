@@ -125,6 +125,9 @@ accepted_external_tranches:
   gse221343:
     status: accepted_query_ready
     role: nearest_external_validation
+  gse289846:
+    status: accepted_query_ready
+    role: cross_lab_external_validation
 
 spatial:
   role: supportive_evidence_only

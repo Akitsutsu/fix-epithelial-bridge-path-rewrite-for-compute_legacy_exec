@@ -141,3 +141,25 @@ Append-only project decision log.
   - GSE221343 rows enter the comparison world for biology narratives.
   - Review artifacts at `reports/tranches/gse221343_query_ready_review_v1/`.
   - Next external intake candidates can follow the same Gate A–D review path.
+
+## D-0011 — GSE289846 promoted to query-ready after explicit reviewer review
+- Status: accepted
+- Scope: intake
+- Date: 2026-04-06
+- Decision:
+  - All 3 GSE289846 condition-level rows promoted to `query_ready_flag=true`:
+    - `GSE289846_3i_Day7`
+    - `GSE289846_3i_LATS_Day14`
+    - `GSE289846_3i_PAL_Day14`
+  - Dataset-level `query_ready_flag=true`, status changed to `accepted_query_ready`.
+  - Tranche status in `data_contract.yaml` updated from `registered_not_validated` to `accepted_query_ready`.
+- Why:
+  - Gate A–D all passed. 100.0% reference gene overlap. Near-pure epithelial (99.3–99.9%).
+  - Each condition maps to a distinct state_fine on v1: Proliferating progenitors → SOX2lowCFTR+ → PNEC.
+  - PAL transitional shows coherent stage shift (late → early).
+  - First independent-lab tranche (Gotoh/CiRA Kyoto vs Kotton/BU), confirming cross-lab projection interpretability.
+  - Explicit reviewer decision, not auto-promoted from paper metadata.
+- Consequences:
+  - GSE289846 enters the comparison world as the first cross-lab validation tranche.
+  - Review artifacts at `reports/tranches/gse289846_query_ready_review_v1/`.
+  - Comparison world now spans 3 labs (BU, Cambridge, Kyoto) and 2 iPSC lines (SPC2-ST-B2, B2-3).
