@@ -77,6 +77,7 @@ public_artifact_situation: >-
   files. Each sample corresponds to one passage (P3, P7, P20).
 
 registration_notes: >-
+  [Superseded by conversion_notes and review_notes above.]
   Dataset-level registration only. Raw supplementary files have NOT been
   downloaded. Sample sheet v1 has NOT been built beyond registration rows.
   query_ready_flag must remain false until local artifact inspection
