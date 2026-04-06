@@ -92,7 +92,7 @@ Append-only project decision log.
   - This tranche is part of the comparison world for future biology narratives.
 
 ## D-0008 — GSE221343 is registered but not query-ready
-- Status: accepted
+- Status: superseded (by D-0010)
 - Scope: intake
 - Date: 2026-04-03
 - Decision:

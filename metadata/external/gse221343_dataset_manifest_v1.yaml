@@ -36,6 +36,7 @@ publication:
     stem cells
 
 registration_notes: >-
+  [Superseded by conversion_notes and review_notes above.]
   Dataset-level registration only. Local raw/supplementary files have NOT
   been downloaded. Sample sheet v1 has NOT been built. query_ready_flag
   must remain false until local artifact inspection confirms h5ad structure,
