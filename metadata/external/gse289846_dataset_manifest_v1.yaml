@@ -70,6 +70,7 @@ public_artifact_situation: >-
   uses condition-level 3 rows as canonical registry units.
 
 registration_notes: >-
+  [Superseded by conversion_notes and review_notes above.]
   Dataset-level registration only. Raw supplementary files have NOT been
   downloaded. Sample sheet v1 has NOT been built beyond registration rows.
   query_ready_flag must remain false until local artifact inspection confirms
