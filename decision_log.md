@@ -163,3 +163,26 @@ Append-only project decision log.
   - GSE289846 enters the comparison world as the first cross-lab validation tranche.
   - Review artifacts at `reports/tranches/gse289846_query_ready_review_v1/`.
   - Comparison world now spans 3 labs (BU, Cambridge, Kyoto) and 2 iPSC lines (SPC2-ST-B2, B2-3).
+
+## D-0012 — GSE308817 promoted to query-ready after explicit reviewer review
+- Status: accepted
+- Scope: intake
+- Date: 2026-04-06
+- Decision:
+  - All 3 GSE308817 passage-level rows promoted to `query_ready_flag=true`:
+    - `GSE308817_ALOp3`
+    - `GSE308817_ALOp7`
+    - `GSE308817_ALOp20`
+  - Dataset-level `query_ready_flag=true`, status changed to `accepted_query_ready`.
+  - Tranche status in `data_contract.yaml` added as `accepted_query_ready`.
+- Why:
+  - Gate A–D all passed. 100.0% reference gene overlap. Epithelial 97.9–99.9%.
+  - Passage trajectory readable: P3→P7 Budtip convergence, P7→P20 stage diversification/drift.
+  - SeekOne platform confirmed compatible with 10x-based reference.
+  - Citation missing on GEO — noted but not a promotion blocker.
+  - Fourth independent lab (Xiamen), hESC H9 background, first non-10x tranche.
+  - Explicit reviewer decision, not auto-promoted.
+- Consequences:
+  - GSE308817 enters the comparison world with a passage/maturation axis.
+  - Comparison world now spans 4 labs (BU, Cambridge, Kyoto, Xiamen), 3 stem cell lines (SPC2-ST-B2, B2-3, H9), and 2 platforms (10x, SeekOne).
+  - Review artifacts at `reports/tranches/gse308817_query_ready_review_v1/`.
