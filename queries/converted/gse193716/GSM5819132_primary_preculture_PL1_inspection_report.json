@@ -1,0 +1,32 @@
+{
+  "sample_id": "GSM5819132_primary_preculture_PL1",
+  "h5ad_path": "queries/converted/gse193716/GSM5819132_primary_preculture_PL1.h5ad",
+  "n_obs": 879,
+  "n_vars": 33539,
+  "obs_columns": [
+    "query_dataset_id",
+    "local_query_sample_id",
+    "source_sample_name",
+    "source_type",
+    "donor_id",
+    "species"
+  ],
+  "var_columns": [
+    "gene_ids",
+    "feature_types",
+    "genome"
+  ],
+  "layers": [
+    "counts"
+  ],
+  "raw_present": true,
+  "x_dtype": "float32",
+  "obs_sample": {
+    "query_dataset_id": "external_gse193716",
+    "local_query_sample_id": "GSM5819132_primary_preculture_PL1",
+    "source_sample_name": "CG8",
+    "source_type": "primary adult AEC2 (freshly isolated)",
+    "donor_id": "PL1",
+    "species": "Homo sapiens"
+  }
+}

@@ -70,17 +70,20 @@ added_value_vs_existing_world: >-
 low_friction_notes: >-
   7 per-GSM CellRanger filtered H5 files in GSE193716_RAW.tar. Standard
   10x Chromium format. Same library prep and analysis pipeline as GSE221343
-  (CellRanger v3). CAUTION: genome build is hg19 (not hg38) with TdTomato
-  reporter — gene-space compatibility with hg38-based reference must be
-  explicitly verified during conversion.
+  (CellRanger v3). Genome build confirmed as GRCh38_tdtomato_10X (GEO text
+  said hg19 but actual H5 genome tag is GRCh38). 33539 Gene Expression
+  features per sample, 26975/30852 (87.4%) reference overlap. Gap is
+  lncRNA annotation drift; no gene-symbol remapping needed.
 
 platform_notes: >-
-  10x Chromium 3' scRNA-seq, CellRanger v3 pipeline. Genome build is hg19
-  with custom TdTomato reporter sequence appended. This is NOT the hg38
-  build used by the existing reference or by GSE221343/GSE289846/GSE308817.
-  Gene naming and feature space may require explicit mapping during H5-to-
-  H5AD conversion. Feature count per H5 file must be checked against
-  reference gene space during conversion.
+  10x Chromium 3' scRNA-seq, CellRanger v3 pipeline. Genome build is
+  GRCh38_tdtomato_10X (custom GRCh38 with TdTomato reporter appended).
+  NOTE: GEO data processing section states hg19, but direct H5 inspection
+  confirms GRCh38. Gene-space compatibility verified during audit:
+  26975/30852 (87.4%) overlap with current reference. Missing genes are
+  lncRNA annotation differences (AC/AL/AP prefix, LINC), not protein-
+  coding. All key lung markers present. 32 duplicate gene symbols resolved
+  via var_names_make_unique during conversion.
 
 public_artifact_situation: >-
   Per-GSM CellRanger filtered H5 files available individually and bundled
@@ -89,19 +92,28 @@ public_artifact_situation: >-
   H5AD. Per-sample H5 files are the preferred intake path.
 
 registration_notes: >-
-  Dataset-level registration only. Raw supplementary files have NOT been
-  downloaded. Sample sheet v1 is built at GSM-level registration granularity
-  (7 rows). query_ready_flag must remain false until local artifact
-  inspection confirms h5ad structure, gene-space overlap, and raw-count
-  availability. This is the fifth external intake candidate. Selected for
-  primary-vs-iPSC benchmark value, isogenic culture pairs, and same-lab
-  controlled comparison with GSE221343. CAVEAT: primary AEC2 samples are
-  adult tissue — projection onto the fetal lung reference has unknown
-  interpretability and must be explicitly evaluated during review. CAVEAT:
-  genome build is hg19 (not hg38) — gene-space compatibility must be
-  verified during conversion. NOTE: intended analysis role is primary-
+  [Superseded by conversion_notes below.]
+  Dataset-level registration only. This is the fifth external intake
+  candidate. Selected for primary-vs-iPSC benchmark value, isogenic
+  culture pairs, and same-lab controlled comparison with GSE221343.
+  CAVEAT: primary AEC2 samples are adult tissue — projection onto the
+  fetal lung reference has unknown interpretability and must be explicitly
+  evaluated during review. NOTE: intended analysis role is primary-
   benchmark-candidate but this value is not yet in the data_contract.yaml
   enum; role will be formalized if/when the tranche passes local validation.
   NOTE: the cultured primary samples (GSM5819129, GSM5819130) and one iAEC2
   sample (GSM5819135) were co-cultured with MRC5 fibroblasts but FACS
   EPCAM+ sorted post-culture to exclude fibroblasts.
+
+conversion_notes: >-
+  H5-to-H5AD conversion completed 2026-04-07. All 7 samples: CellRanger v3
+  filtered H5, float32 raw counts (integer-valued), 33539 Gene Expression
+  features, 26975/30852 (87.4%) reference gene overlap. Genome build
+  confirmed as GRCh38_tdtomato_10X (GEO text said hg19 but actual H5
+  genome tag is GRCh38). Gap is lncRNA annotation drift (AC/AL/AP/LINC
+  prefix); no gene-symbol remapping needed. 32 duplicate gene symbols
+  resolved via var_names_make_unique. TdTomato reporter retained. Conversion
+  script: queries/converted/gse193716/convert_gse193716_h5_to_h5ad.py.
+  qc_status set to local_validation_inspected_manual_review_required.
+  query_ready_flag remains false pending projection and explicit reviewer
+  decision. Adult-primary-vs-fetal-reference caveat remains unresolved.
