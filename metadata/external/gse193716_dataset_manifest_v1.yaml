@@ -1,0 +1,107 @@
+dataset_id: external_gse193716
+series_accession: GSE193716
+title: >-
+  Transcriptomic profiling of freshly isolated primary adult human
+  alveolar epithelial type 2 cells (AEC2s), their isogenic cultured
+  progeny, and human iPSC-derived AEC2s (iAEC2s)
+source_type: primary adult AEC2 + iPSC-derived iAEC2 (SPC2-ST-B2)
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3')
+platform: GPL24676 (Illumina NovaSeq 6000)
+status: registered_not_validated
+priority: candidate
+query_ready_flag: false
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE193716
+  bioproject: PRJNA797378
+  processed_supplementary:
+    - GSE193716_RAW.tar
+    - GSE193716_sc.Rds.gz
+  per_sample_files:
+    - GSM5819129_CG5.filtered_feature_bc_matrix.h5
+    - GSM5819130_CG6.filtered_feature_bc_matrix.h5
+    - GSM5819131_CG7.filtered_feature_bc_matrix.h5
+    - GSM5819132_CG8.filtered_feature_bc_matrix.h5
+    - GSM5819133_CG12.filtered_feature_bc_matrix.h5
+    - GSM5819134_CG13.filtered_feature_bc_matrix.h5
+    - GSM5819135_CG14.filtered_feature_bc_matrix.h5
+  sample_ids:
+    - GSM5819129  # CG5: primary AEC2 cultured (P0, donor PL2)
+    - GSM5819130  # CG6: primary AEC2 cultured (P0, donor PL1)
+    - GSM5819131  # CG7: primary AEC2 pre-culture (donor PL2)
+    - GSM5819132  # CG8: primary AEC2 pre-culture (donor PL1)
+    - GSM5819133  # CG12: iAEC2 3D (SPC2-ST-B2)
+    - GSM5819134  # CG13: iAEC2 3D/insert (SPC2-ST-B2)
+    - GSM5819135  # CG14: iAEC2 +MRC5/insert (SPC2-ST-B2)
+
+publication:
+  pmid: "36454643"
+  doi: 10.1172/jci.insight.158937
+  journal: JCI Insight
+  first_author: Alysandratos KD
+  year: 2023
+  title: >-
+    Culture impact on the transcriptomic programs of primary and iPSC-derived
+    human alveolar type 2 cells
+
+why_this_dataset: >-
+  Fifth external intake candidate. Same lab (Kotton / BU) and iPSC line
+  (SPC2-ST-B2) as GSE221343 but uniquely includes freshly isolated primary
+  adult AEC2s alongside isogenic cultured primary and iPSC-derived AEC2s.
+  This enables direct primary-vs-iPSC benchmarking within a single dataset.
+  The primary AEC2 component would be the first non-iPSC/non-hESC/non-fetal
+  adult tissue in the comparison world — testing whether the fetal lung
+  reference can resolve adult primary vs organoid-derived epithelial identity.
+  Two primary donors (PL1, PL2) each provide pre-culture and cultured pairs.
+  Three iAEC2 culture conditions (3D, 3D/insert, +MRC5/insert) test culture
+  format effects. Published in JCI Insight (PMID 36454643, 75+ PMC citations).
+
+added_value_vs_existing_world: >-
+  First primary adult tissue in the comparison world (all existing tranches
+  are iPSC-derived, hESC-derived, or fetal lung-derived organoids). Same
+  lab and iPSC line as GSE221343 enables controlled comparison: GSE193716
+  iAEC2 3D vs GSE221343 CK+DCI are the same cell type in similar culture
+  but profiled independently. Pre-culture vs cultured isogenic pairs add a
+  culture effect axis. Co-culture with MRC5 fibroblasts adds a stromal
+  interaction axis. Adult primary AEC2s would test fetal reference limits.
+
+low_friction_notes: >-
+  7 per-GSM CellRanger filtered H5 files in GSE193716_RAW.tar. Standard
+  10x Chromium format. Same library prep and analysis pipeline as GSE221343
+  (CellRanger v3). CAUTION: genome build is hg19 (not hg38) with TdTomato
+  reporter — gene-space compatibility with hg38-based reference must be
+  explicitly verified during conversion.
+
+platform_notes: >-
+  10x Chromium 3' scRNA-seq, CellRanger v3 pipeline. Genome build is hg19
+  with custom TdTomato reporter sequence appended. This is NOT the hg38
+  build used by the existing reference or by GSE221343/GSE289846/GSE308817.
+  Gene naming and feature space may require explicit mapping during H5-to-
+  H5AD conversion. Feature count per H5 file must be checked against
+  reference gene space during conversion.
+
+public_artifact_situation: >-
+  Per-GSM CellRanger filtered H5 files available individually and bundled
+  in GSE193716_RAW.tar. 7 samples = 7 H5 files. Series-level combined
+  Seurat RDS (GSE193716_sc.Rds.gz) also available but is an R object, not
+  H5AD. Per-sample H5 files are the preferred intake path.
+
+registration_notes: >-
+  Dataset-level registration only. Raw supplementary files have NOT been
+  downloaded. Sample sheet v1 is built at GSM-level registration granularity
+  (7 rows). query_ready_flag must remain false until local artifact
+  inspection confirms h5ad structure, gene-space overlap, and raw-count
+  availability. This is the fifth external intake candidate. Selected for
+  primary-vs-iPSC benchmark value, isogenic culture pairs, and same-lab
+  controlled comparison with GSE221343. CAVEAT: primary AEC2 samples are
+  adult tissue — projection onto the fetal lung reference has unknown
+  interpretability and must be explicitly evaluated during review. CAVEAT:
+  genome build is hg19 (not hg38) — gene-space compatibility must be
+  verified during conversion. NOTE: intended analysis role is primary-
+  benchmark-candidate but this value is not yet in the data_contract.yaml
+  enum; role will be formalized if/when the tranche passes local validation.
+  NOTE: the cultured primary samples (GSM5819129, GSM5819130) and one iAEC2
+  sample (GSM5819135) were co-cultured with MRC5 fibroblasts but FACS
+  EPCAM+ sorted post-culture to exclude fibroblasts.
