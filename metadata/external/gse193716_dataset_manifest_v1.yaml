@@ -8,8 +8,8 @@ source_type: primary adult AEC2 + iPSC-derived iAEC2 (SPC2-ST-B2)
 organism: Homo sapiens
 modality: scRNA (10x Chromium Single Cell 3')
 platform: GPL24676 (Illumina NovaSeq 6000)
-status: registered_not_validated
-priority: candidate
+status: accepted_iAEC2_subset_query_ready
+priority: current
 query_ready_flag: false
 reference_basis: converted/reference_RNA.h5ad
 
@@ -115,5 +115,19 @@ conversion_notes: >-
   resolved via var_names_make_unique. TdTomato reporter retained. Conversion
   script: queries/converted/gse193716/convert_gse193716_h5_to_h5ad.py.
   qc_status set to local_validation_inspected_manual_review_required.
-  query_ready_flag remains false pending projection and explicit reviewer
-  decision. Adult-primary-vs-fetal-reference caveat remains unresolved.
+  query_ready_flag remains false for primary rows pending biological
+  review. Adult-primary-vs-fetal-reference caveat remains unresolved.
+
+review_notes: >-
+  iAEC2 subset (3 rows) promoted to query_ready_flag=true after explicit
+  reviewer decision 2026-04-07. Gate A (object contract), Gate B
+  (provenance), Gate C (projection smoke test on v1), and Gate D
+  (within-tranche biology coherence) all passed for the iAEC2 subset.
+  Proliferating progenitors as top epi state_fine replicates GSE289846
+  3i_Day7 cross-dataset. Culture-format comparison (3D vs insert vs
+  +MRC5) is internally coherent. 4 primary AEC2 rows remain
+  query_ready_flag=false: 2 pre-culture (hold_pending_biological_review)
+  and 2 cultured (not_recommended_now due to elevated off-target).
+  Dataset-level query_ready_flag remains false because the primary rows
+  are not promoted. Review artifacts at
+  reports/tranches/gse193716_iAEC2_subset_review_v1/.

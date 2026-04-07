@@ -186,3 +186,36 @@ Append-only project decision log.
   - GSE308817 enters the comparison world with a passage/maturation axis.
   - Comparison world now spans 4 labs (BU, Cambridge, Kyoto, Xiamen), 3 stem cell lines (SPC2-ST-B2, B2-3, H9), and 2 platforms (10x, SeekOne).
   - Review artifacts at `reports/tranches/gse308817_query_ready_review_v1/`.
+
+## D-0013 — GSE193716 iAEC2 subset promoted to query-ready after explicit reviewer review
+- Status: accepted
+- Scope: intake
+- Date: 2026-04-07
+- Decision:
+  - 3 iAEC2 rows from GSE193716 promoted to `query_ready_flag=true`:
+    - `GSM5819133_iAEC2_3D`
+    - `GSM5819134_iAEC2_3D_insert`
+    - `GSM5819135_iAEC2_MRC5_insert`
+  - 4 primary AEC2 rows remain `query_ready_flag=false`:
+    - `GSM5819131_primary_preculture_PL2` (hold_pending_biological_review)
+    - `GSM5819132_primary_preculture_PL1` (hold_pending_biological_review)
+    - `GSM5819129_primary_cultured_PL2` (not_recommended_now)
+    - `GSM5819130_primary_cultured_PL1` (not_recommended_now)
+  - Dataset-level `status` set to `accepted_iAEC2_subset_query_ready`.
+  - Dataset-level `query_ready_flag` remains `false` (because primary rows are not promoted).
+- Why:
+  - Gate A–D all passed for the 3 iAEC2 rows. 87.4% reference gene overlap (lncRNA annotation gap only).
+  - All 3 iAEC2 rows map to Proliferating progenitors at late_GW17_19/week_18.
+  - Proliferating progenitors replicates GSE289846 3i_Day7 cross-dataset (Kyoto, B2-3 line).
+  - Same iPSC line (SPC2-ST-B2) as GSE221343 — controlled same-lab comparison.
+  - Culture-format comparison (3D vs insert vs +MRC5) is internally coherent and unique.
+  - +MRC5 effect on iAEC2 is minimal (epi off-target 2.1%).
+  - 3D/insert row has highest alignment score (0.814) of any external tranche row.
+  - Primary rows excluded due to unresolved adult-primary-vs-fetal Budtip mapping caveat and elevated off-target (9.9–15.6%) in cultured samples.
+  - Explicit reviewer decision, not auto-promoted.
+- Consequences:
+  - 3 iAEC2 rows enter the comparison world with a culture-format comparison axis.
+  - This is the fifth accepted external tranche (first subset promotion).
+  - Same lab as GSE221343 — comparison world now has 2 tranches from Kotton/BU.
+  - Primary rows can be reconsidered after domain-expert input on adult-primary-vs-fetal biology.
+  - Review artifacts at `reports/tranches/gse193716_iAEC2_subset_review_v1/`.
