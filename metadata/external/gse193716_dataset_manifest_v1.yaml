@@ -8,7 +8,7 @@ source_type: primary adult AEC2 + iPSC-derived iAEC2 (SPC2-ST-B2)
 organism: Homo sapiens
 modality: scRNA (10x Chromium Single Cell 3')
 platform: GPL24676 (Illumina NovaSeq 6000)
-status: accepted_iAEC2_subset_query_ready
+status: accepted_query_ready
 priority: current
 query_ready_flag: false
 reference_basis: converted/reference_RNA.h5ad

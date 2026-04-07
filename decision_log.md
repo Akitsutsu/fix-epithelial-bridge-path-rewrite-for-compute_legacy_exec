@@ -201,7 +201,7 @@ Append-only project decision log.
     - `GSM5819132_primary_preculture_PL1` (hold_pending_biological_review)
     - `GSM5819129_primary_cultured_PL2` (not_recommended_now)
     - `GSM5819130_primary_cultured_PL1` (not_recommended_now)
-  - Dataset-level `status` set to `accepted_iAEC2_subset_query_ready`.
+  - Dataset-level `status` set to `accepted_query_ready` (iAEC2 subset only; 4 primary rows remain query_ready_flag=false).
   - Dataset-level `query_ready_flag` remains `false` (because primary rows are not promoted).
 - Why:
   - Gate A–D all passed for the 3 iAEC2 rows. 87.4% reference gene overlap (lncRNA annotation gap only).

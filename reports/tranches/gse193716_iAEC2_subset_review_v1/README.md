@@ -85,7 +85,8 @@ Comparison with same-line GSE221343 (SPC2-ST-B2):
 
 **Subset-level decision**: 3 iAEC2 rows promoted → dataset-level
 `query_ready_flag` remains **false** (because 4 primary rows are not
-promoted). Dataset-level `status` set to `accepted_iAEC2_subset_query_ready`.
+promoted). Dataset-level `status` set to `accepted_query_ready`
+(iAEC2 subset only; 4 primary rows remain query_ready_flag=false).
 
 ## What this review is NOT based on
 - Similarity to CA1/BU3 — interpretability on v1 is the criterion

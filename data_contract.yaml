@@ -132,7 +132,7 @@ accepted_external_tranches:
     status: accepted_query_ready
     role: passage_series_external_validation
   gse193716:
-    status: accepted_iAEC2_subset_query_ready
+    status: accepted_query_ready
     role: nearest_external_validation
 
 spatial:
