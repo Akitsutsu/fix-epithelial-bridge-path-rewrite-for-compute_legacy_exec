@@ -1,0 +1,16 @@
+row	tranche_role	lab	line_or_source	platform	axis	WL_top_stage	WL_top_state	Epi_top_state	Epi_off_target_pct	Ambiguity_pct	interpretation
+CA1	proximal_anchor	NA	CA1 organoid	10x	NA	mid_GW14_16 / week_15	Basal cells	NA	NA	NA	proximal airway-like anchor; mixed epithelial
+BU3	proximal_anchor	NA	BU3 organoid	10x	NA	mid_GW14_16 / week_15	Basal cells	NA	NA	NA	converged proximal airway-like anchor
+G237359_15934	donor_resolved_validation	Rawlins / Cambridge	fetal AT2 (15934)	10x	donor	late_GW17_19 / week_18	Tip cells	NA	NA	NA	distal Tip-like; strongest donor
+G237359_16011	donor_resolved_validation	Rawlins / Cambridge	fetal AT2 (16011)	10x	donor	late_GW17_19 / week_18	Tip cells	NA	NA	NA	distal Tip-like; supportive (low n=261)
+G237359_16392	donor_resolved_validation	Rawlins / Cambridge	fetal AT2 (16392)	10x	donor	late_GW17_19 / week_18	Tip cells	NA	NA	NA	distal Tip-like; strongest donor
+G237359_16402	donor_resolved_validation	Rawlins / Cambridge	fetal AT2 (16402)	10x	donor	late_GW17_19 / week_18	Tip cells	NA	NA	NA	distal Tip-like; consistent
+GSM6858854_CK_DCI	nearest_validation	Kotton / BU	iPSC iAT2 (SPC2-ST-B2)	10x	condition	late_GW17_19 / week_18	Stromal-like cells 1	Stromal-like cells 1	4.7	29.9	iAT2 control baseline
+GSM6858855_YAP5SA_CK_DCI	nearest_validation	Kotton / BU	iPSC iAT2 (SPC2-ST-B2)	10x	condition	late_GW17_19 / week_18	Stromal-like cells 1	Stromal-like cells 1	2.1	35.3	YAP5SA perturbation; subtle shift from baseline
+GSM6858856_L_DCI	nearest_validation	Kotton / BU	iPSC iAT1 (SPC2-ST-B2)	10x	condition	late_GW17_19 / week_18	SOX2lowCFTR+ cells	SOX2lowCFTR+ cells	0.8	37.3	iAT1 differentiation; distinct state
+GSE289846_3i_Day7	cross_lab_validation	Gotoh / Kyoto	iPSC epi (B2-3)	10x	condition	late_GW17_19 / week_18	Proliferating progenitors	Proliferating progenitors	0.7	34.9	iAT2 progenitor baseline; cross-lab
+GSE289846_3i_LATS_Day14	cross_lab_validation	Gotoh / Kyoto	iPSC epi (B2-3)	10x	condition	late_GW17_19 / week_18	SOX2lowCFTR+ cells	SOX2lowCFTR+ cells	0.1	27.7	AT1 induction; cross-lab SOX2lowCFTR+ replication
+GSE289846_3i_PAL_Day14	cross_lab_validation	Gotoh / Kyoto	iPSC epi (B2-3)	10x	condition	early_GW10_13 / week_13	PNEC	PNEC	0.1	17.8	transitional; stage shift + PNEC; most resolved
+GSE308817_ALOp3	passage_validation	Liu/Rong / Xiamen	hESC ALO (H9)	SeekOne	passage	early_GW10_13 / week_11	Budtip progenitors	Budtip progenitors	2.1	49.9	early passage; Budtip; high ambiguity
+GSE308817_ALOp7	passage_validation	Liu/Rong / Xiamen	hESC ALO (H9)	SeekOne	passage	early_GW10_13	Budtip progenitors	Budtip progenitors	0.1	30.3	optimal expansion; best alignment
+GSE308817_ALOp20	passage_validation	Liu/Rong / Xiamen	hESC ALO (H9)	SeekOne	passage	early_GW10_13	Budtip progenitors	Budtip progenitors	0.1	47.3	late passage drift; stage diversification
