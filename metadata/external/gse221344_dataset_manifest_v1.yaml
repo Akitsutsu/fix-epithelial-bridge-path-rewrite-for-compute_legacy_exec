@@ -1,0 +1,134 @@
+dataset_id: external_gse221344
+series_accession: GSE221344
+title: >-
+  Nuclear YAP overexpression drives the human alveolar type 1 cell (AT1)
+  program in a cell autonomous manner in lentiviral transduced iPSC-derived
+  alveolar type 2 cells (iAT2s)
+source_type: iPSC-derived alveolar epithelial organoid (iAT2, lentiviral YAP perturbation)
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3' v3)
+platform: GPL18573 (Illumina NextSeq 500)
+status: accepted_query_ready
+priority: current
+query_ready_flag: true
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE221344
+  bioproject: PRJNA913930
+  processed_supplementary:
+    - GSE221344_RAW.tar
+    - GSM6858857_WT-YA.h5
+    - GSM6858858_YAP5SA.h5
+  sample_ids:
+    - GSM6858857  # WT-YAP (WT YAP lentiviral control, 3445 cells captured)
+    - GSM6858858  # YAP5SA (constitutively active nuclear YAP, 2539 cells captured)
+
+publication:
+  pmid: "38642558"
+  doi: 10.1016/j.stem.2024.03.017
+  journal: Cell Stem Cell
+  first_author: Burgess CL
+  year: 2024
+  title: >-
+    Generation of human alveolar epithelial type I cells from pluripotent
+    stem cells
+  secondary_pmid: "36711505"
+  secondary_pmid_note: >-
+    Also cited by GEO for this series. Likely bioRxiv preprint of the same
+    paper. Primary citation is PMID:38642558.
+
+why_this_dataset: >-
+  Same iPSC line (SPC2-ST-B2) and same lab (Kotton / BU) as GSE221343.
+  Explicit iAT1-directed perturbation tranche: constitutively active nuclear
+  YAP (YAP5SA) lentivirus drives AT1 program in iAT2s, compared to WT YAP
+  lentiviral control. Registered as positive-arm validation candidate for
+  P-0001 (same-line perturbation direction prediction). Complements the
+  existing GSE193716 culture-format-only arm: GSE193716 iAEC2 subset provides
+  culture-format variation without lineage-directing perturbation (all 3 rows
+  map to Proliferating progenitors), while GSE221344 YAP5SA provides explicit
+  perturbation that is predicted to drive SOX2lowCFTR+ identity. CAVEAT: this
+  tranche does not itself contain the culture-format-only arm, so it is not a
+  full single-tranche validation of P-0001. It functions as one side of a
+  same-line two-tranche validation design (GSE221344 perturbation arm +
+  GSE193716 culture-format arm).
+
+added_value_vs_existing_world: >-
+  GSE221343 already contains a YAP5SA condition (GSM6858855), but GSE221344
+  adds the WT-YAP lentiviral control that is absent from GSE221343. This
+  enables assessment of whether lentiviral transduction per se (WT YAP)
+  affects projection identity relative to the untransduced CK+DCI control
+  in GSE221343. If WT-YAP maps to the same state as the untransduced control,
+  the YAP5SA-to-SOX2lowCFTR+ shift is confirmed as perturbation-specific
+  rather than a lentiviral transduction artifact.
+
+low_friction_notes: >-
+  2 per-GSM CellRanger v3 filtered H5 files in GSE221344_RAW.tar (53.6 Mb
+  total). Standard 10x Chromium 3' v3 format. Same library prep and analysis
+  pipeline as GSE221343 (CellRanger v3, GRCh38 + tdTomato + lentiviral BFP).
+  Same iPSC line, same paper, same submission batch (adjacent GSM IDs).
+  Gene-space audit confirmed 58398 Gene Expression features per sample,
+  28378/30852 (91.98%) reference gene overlap — identical to GSE221343.
+  162 duplicate gene symbols (1543 extra entries) resolved via
+  var_names_make_unique. 3 custom/reporter features retained
+  (TDTOMATO_PART_450, BFP_821, YAP_WT_1614). Genome tag is
+  GRCh38_TDTOMATO-PART_YAP_BFP. No gene-symbol remapping needed.
+  NOTE: H5 filename for WT-YAP sample is GSM6858857_WT-YA.h5 — this is
+  the actual deposited filename (confirmed via TAR listing), not a GEO
+  display truncation of WT-YAP.h5.
+
+public_artifact_situation: >-
+  Per-GSM CellRanger filtered H5 files available individually and bundled in
+  GSE221344_RAW.tar (53.6 Mb). 2 samples = 2 H5 files: GSM6858857_WT-YA.h5
+  (29.4 Mb) and GSM6858858_YAP5SA.h5 (24.1 Mb). WT-YA.h5 is the actual
+  deposited filename (confirmed via TAR listing 2026-04-08), not a
+  truncation of WT-YAP.h5. No series-level combined object provided. No
+  H5AD provided; per-sample H5 files are the preferred intake path.
+
+registration_notes: >-
+  [Superseded by conversion_notes below.]
+  Registration-only intake 2026-04-08. Dataset-level registration with sample
+  sheet v1 built from current GEO metadata. This is the sixth external intake
+  candidate. Registered specifically as P-0001 positive-arm validation
+  candidate. Accession-title mapping verified against current GEO page
+  2026-04-08: GSE221344 is unambiguously the WT-YAP vs YAP5SA lentiviral
+  comparison from Burgess 2024. Adjacent to GSE221343 (same paper, consecutive
+  GSM IDs GSM6858854-6858858, consecutive BioProject IDs PRJNA913930 vs
+  PRJNA913931). GEO also lists PMID:36711505 as a secondary citation (likely
+  bioRxiv preprint). GSE246243 is also part of the Burgess/Kotton AT1 dataset
+  family but was not evaluated in this intake. Role set to
+  nearest_external_validation (existing contract enum); true intent is
+  positive-arm P-0001 validation complement to GSE193716 culture-format-only
+  arm.
+
+conversion_notes: >-
+  H5-to-H5AD conversion completed 2026-04-08. Both samples: CellRanger v3
+  filtered H5, float32 raw counts (integer-valued), 58398 Gene Expression
+  features, 28378/30852 (91.98%) reference gene overlap — identical to
+  GSE221343. Genome build confirmed as GRCh38_TDTOMATO-PART_YAP_BFP (custom
+  CellRanger reference with partial tdTomato, WT YAP transgene, and TagBFP
+  appended). 162 duplicate gene symbols (1543 extra entries) resolved via
+  var_names_make_unique. 3 custom/reporter features retained:
+  TDTOMATO_PART_450 (SFTPC knock-in), BFP_821 (lentiviral TagBFP), and
+  YAP_WT_1614 (WT YAP transgene). No gene-symbol remapping needed.
+  Conversion script:
+  queries/converted/gse221344/convert_gse221344_h5_to_h5ad.py. Cell counts
+  in H5 (5532 + 4201) exceed GEO-reported counts (3445 + 2539) because GEO
+  values reflect post-Seurat-QC numbers; conversion uses full CellRanger
+  filtered barcodes. qc_status set to
+  local_validation_inspected_manual_review_required. query_ready_flag
+  remains false pending projection and review.
+
+review_notes: >-
+  Both rows promoted to query_ready_flag=true after explicit reviewer
+  decision 2026-04-08. Gate A (object contract), Gate B (provenance),
+  Gate C (projection smoke test on v1), and Gate D (within-tranche
+  biology coherence) all passed. Both rows promoted as a paired
+  perturbation tranche: WT-YAP lentiviral control + YAP5SA
+  constitutively active nuclear YAP. YAP5SA shows 100x CFTR+ lineage
+  enrichment (5.6% SOX2lowCFTR+ + 7.3% NKX2-1+SOX9+CFTR+) relative
+  to WT-YAP (~0.1%). Direction is consistent with P-0001 but
+  SOX2lowCFTR+ is not the top state (partial shift). P-0001 remains
+  registered/supportive, not confirmed. WT-YAP is a lentiviral control,
+  not an untransduced control. Review artifacts at
+  reports/tranches/gse221344_query_ready_review_v1/.

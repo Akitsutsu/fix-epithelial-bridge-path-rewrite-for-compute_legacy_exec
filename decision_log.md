@@ -219,3 +219,43 @@ Append-only project decision log.
   - Same lab as GSE221343 — comparison world now has 2 tranches from Kotton/BU.
   - Primary rows can be reconsidered after domain-expert input on adult-primary-vs-fetal biology.
   - Review artifacts at `reports/tranches/gse193716_iAEC2_subset_review_v1/`.
+
+## D-0014 — GSE221344 promoted to query-ready as paired same-line positive-arm tranche
+- Status: accepted
+- Scope: intake
+- Date: 2026-04-08
+- Decision:
+  - Both GSE221344 rows promoted to `query_ready_flag=true` as a paired tranche:
+    - `GSM6858857_WT_YAP` (WT YAP lentiviral control)
+    - `GSM6858858_YAP5SA` (YAP5SA constitutively active nuclear YAP)
+  - Dataset-level `query_ready_flag=true`, status changed to `accepted_query_ready`.
+  - Tranche role: `nearest_external_validation`.
+  - Tranche meaning: same-line positive-arm supportive evidence for P-0001.
+  - P-0001 prediction status remains `registered`/supportive, NOT confirmed.
+- Why:
+  - Gate A–D all passed. 91.98% reference gene overlap (identical to GSE221343).
+  - Both samples project to Epithelial (~98%) at late_GW17_19/week_18.
+  - Both are Proliferating progenitors dominant in the epithelial remap.
+  - YAP5SA shows 100x enrichment of CFTR+ lineage cells relative to WT-YAP:
+    SOX2lowCFTR+ 5.6% vs 0.06%, NKX2-1+SOX9+CFTR+ 7.3% vs 0.07%.
+  - Direction is consistent with P-0001 (iAT1-directed perturbation enriches
+    SOX2lowCFTR+), but SOX2lowCFTR+ is not the top state in YAP5SA (5.6%,
+    partial shift, not identity conversion). P-0001 success condition is not met.
+  - The pair is the evidence unit: the 100x enrichment is only interpretable
+    relative to the matched WT-YAP lentiviral control.
+  - Same iPSC line (SPC2-ST-B2), same lab (Kotton/BU), same paper (Burgess 2024)
+    as GSE221343. Adjacent GSE/GSM IDs.
+  - Explicit reviewer decision, not auto-promoted from paper expectations.
+- Caveats:
+  - WT-YAP is a lentiviral control, not an untransduced control. Tip cells
+    enrichment (29.9%) distinguishes it from untransduced GSE221343 CK+DCI.
+  - YAP5SA shows a partial shift, not a top-state SOX2lowCFTR+ conversion.
+  - Whole-lung off-target (16.6-28.7%) is elevated because conversion uses
+    full CellRanger filtered barcodes, not paper post-Seurat-QC subset.
+    Epithelial-remap off-target is clean (1.7-1.8%).
+- Consequences:
+  - GSE221344 enters the comparison world as a paired perturbation tranche.
+  - This is the sixth accepted external tranche.
+  - P-0001 gains supportive evidence but is NOT confirmed or falsified.
+  - Comparison-world refresh deferred to separate reports-only PR.
+  - Review artifacts at `reports/tranches/gse221344_query_ready_review_v1/`.
