@@ -62,7 +62,7 @@ and logged in a future decision.
 |-------|------|-------------|
 | contrast_id | string | Unique ID (e.g., C-0001) |
 | contrast_type | enum | `paired_perturbation`, `matched_format_series`, `cross_tranche_replication`, `directional_gradient` |
-| tranche_id | string | Source tranche (e.g., GSE221344) |
+| tranche_ids | list | Source tranche(s); single-element for within-tranche contrasts, multi-element for cross-tranche replication |
 | member_row_ids | list | All row IDs in the contrast unit |
 | control_row_ids | list | Control/baseline row IDs (if applicable) |
 | comparison_row_ids | list | Treatment/comparison row IDs |
@@ -165,7 +165,7 @@ Backfill improves comparability without rewriting history.
 |-------|-------|
 | contrast_id | C-0001 (proposed) |
 | contrast_type | paired_perturbation |
-| tranche_id | GSE221344 |
+| tranche_ids | [GSE221344] |
 | member_row_ids | GSM6858857_WT_YAP, GSM6858858_YAP5SA |
 | control_row_ids | GSM6858857_WT_YAP |
 | comparison_row_ids | GSM6858858_YAP5SA |
@@ -182,7 +182,7 @@ Backfill improves comparability without rewriting history.
 |-------|-------|
 | contrast_id | C-0002 (proposed) |
 | contrast_type | directional_gradient |
-| tranche_id | GSE221342 |
+| tranche_ids | [GSE221342] |
 | member_row_ids | GSM6858850_iAT2_3D, GSM6858851_iAT1_3D, GSM6858852_iAT1_ALI_p0, GSM6858853_iAT1_ALI_p1 |
 | control_row_ids | GSM6858850_iAT2_3D |
 | comparison_row_ids | GSM6858851_iAT1_3D, GSM6858852_iAT1_ALI_p0, GSM6858853_iAT1_ALI_p1 |
@@ -200,7 +200,7 @@ Backfill improves comparability without rewriting history.
 |-------|-------|
 | contrast_id | C-0003 (proposed) |
 | contrast_type | matched_format_series |
-| tranche_id | GSE193716 |
+| tranche_ids | [GSE193716] |
 | member_row_ids | GSM5819133_iAEC2_3D, GSM5819134_iAEC2_3D_insert, GSM5819135_iAEC2_MRC5_insert |
 | control_row_ids | GSM5819133_iAEC2_3D |
 | comparison_row_ids | GSM5819134_iAEC2_3D_insert, GSM5819135_iAEC2_MRC5_insert |
