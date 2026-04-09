@@ -259,3 +259,40 @@ Append-only project decision log.
   - P-0001 gains supportive evidence but is NOT confirmed or falsified.
   - Comparison-world refresh deferred to separate reports-only PR.
   - Review artifacts at `reports/tranches/gse221344_query_ready_review_v1/`.
+
+## D-0015 — GSE221342 promoted to query-ready as boundary-stress tranche
+- Status: accepted
+- Scope: intake
+- Date: 2026-04-09
+- Decision:
+  - All 4 GSE221342 rows promoted to `query_ready_flag=true`:
+    - `GSM6858850_iAT2_3D` (iAT2 baseline, 3D CKDCI)
+    - `GSM6858851_iAT1_3D` (iAT1 differentiation, 3D LDCI)
+    - `GSM6858852_iAT1_ALI_p0` (iAT1, ALI transwell direct passage)
+    - `GSM6858853_iAT1_ALI_p1` (iAT1, ALI transwell after 9d 3D LDCI)
+  - Dataset-level `query_ready_flag=true`, status changed to `accepted_query_ready`.
+  - Tranche role: `nearest_external_validation`.
+  - Tranche meaning: same-line-to-anchor boundary-stress tranche.
+  - NOT a P-0001 validation tranche (BU3 NGAT, not SPC2-ST-B2).
+- Why:
+  - Gate A–D all passed. 91.98% reference gene overlap (identical to GSE221343/GSE221344).
+  - iAT2 3D maps to **mid_GW14_16 / week_15** — first external row at this stage, directly
+    probing the anchor-only mid-stage gap identified in coverage boundary audit v1.
+  - iAT1 conditions (3D, ALI p0, ALI p1) show SOX2lowCFTR+ dominant (60.9–78.0%),
+    replicating the L+DCI -> SOX2lowCFTR+ shift cross-line (BU3 NGAT vs SPC2-ST-B2 vs B2-3).
+  - ALI p1 has the strongest SOX2lowCFTR+ (78.0%) and best alignment (0.773) of any
+    tranche in the comparison world.
+  - ALI culture format is new to the comparison world and is readable on v1.
+  - BU3 NGAT is the same iPSC line as the BU3 anchor query — first external tranche
+    from the same line as an anchor.
+  - Clear monotonic gradient: iAT2 Budtip -> iAT1 SOX2lowCFTR+ -> ALI p0 -> ALI p1.
+  - Explicit reviewer decision, not auto-promoted.
+- Consequences:
+  - GSE221342 enters the comparison world as a boundary-stress tranche.
+  - This is the seventh accepted external tranche.
+  - First external mid_GW14_16 row enters the world (iAT2 3D).
+  - First ALI culture format enters the world.
+  - SOX2lowCFTR+ now replicates across 3 iPSC lines (SPC2-ST-B2, B2-3, BU3 NGAT).
+  - P-0001 is NOT affected (different cell line).
+  - Comparison-world refresh deferred to separate reports-only PR.
+  - Review artifacts at `reports/tranches/gse221342_query_ready_review_v1/`.

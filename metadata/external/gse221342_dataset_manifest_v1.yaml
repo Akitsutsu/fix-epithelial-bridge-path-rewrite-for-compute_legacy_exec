@@ -1,0 +1,124 @@
+dataset_id: external_gse221342
+series_accession: GSE221342
+title: >-
+  3D and Air Liquid Interface culture of human iPSC-derived alveolar
+  epithelial type I-like cells (iAT1s) [NGAT LDCI]
+source_type: iPSC-derived alveolar epithelial organoid (iAT2/iAT1, BU3 NGAT, 3D vs ALI)
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3')
+platform: GPL18573 (Illumina NextSeq 500)
+status: accepted_query_ready
+priority: current
+query_ready_flag: true
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE221342
+  bioproject: PRJNA913928
+  processed_supplementary:
+    - GSE221342_RAW.tar
+    - GSM6858850_iAT2_3D.h5
+    - GSM6858851_iAT1_3D.h5
+    - GSM6858852_iAT1_ALI_p0.h5
+    - GSM6858853_iAT1_ALI_p1.h5
+  sample_ids:
+    - GSM6858850  # iAT2 3D (CKDCI medium, 3D Matrigel)
+    - GSM6858851  # iAT1 3D (LDCI medium, 3D Matrigel)
+    - GSM6858852  # iAT1 ALI p0 (LDCI, transwell direct from iAT2)
+    - GSM6858853  # iAT1 ALI p1 (LDCI, transwell after 9d 3D LDCI)
+
+publication:
+  pmid: "38642558"
+  doi: 10.1016/j.stem.2024.03.017
+  journal: Cell Stem Cell
+  first_author: Burgess CL
+  year: 2024
+  title: >-
+    Generation of human alveolar epithelial type I cells from pluripotent
+    stem cells
+  secondary_pmid: "36711505"
+  secondary_pmid_note: >-
+    Also cited by GEO for this series. Likely bioRxiv preprint of the same
+    paper. Primary citation is PMID:38642558.
+
+why_this_dataset: >-
+  Same-line-to-anchor boundary-stress tranche. BU3 NGAT is the same iPSC
+  line as the BU3 anchor query — this is the first external tranche from
+  the same line as an anchor, enabling direct same-line anchor comparison.
+  Adds a genuinely new culture-format axis (ALI / transwell) not present
+  in any current comparison-world tranche. Tests whether iAT1
+  differentiation on BU3 NGAT produces the same SOX2lowCFTR+ shift seen
+  in SPC2-ST-B2 (GSE221343 L+DCI). Selected as the immediate tranche
+  lane from the BU/Kotton Burgess 2024 family after accession
+  disambiguation (see reports/repo_state/
+  bu_kotton_3d_vs_ali_accession_resolution_v1.md). CAVEAT: this is NOT a
+  same-line SPC2-ST-B2 validation tranche for P-0001. BU3 NGAT is a
+  different iPSC line from the P-0001 basis (SPC2-ST-B2). P-0001
+  relevance, if any, would be cross-line supportive evidence, not
+  same-line validation.
+
+added_value_vs_existing_world: >-
+  Adds two axes absent from the current comparison world: (1) ALI culture
+  format — the only transwell/air-liquid-interface condition among all
+  accepted tranches; (2) BU3 NGAT cell line — same line as the BU3 anchor
+  query, enabling direct anchor-external comparison. Also provides a
+  second iPSC line with iAT1 3D differentiation (BU3 NGAT L+DCI vs
+  SPC2-ST-B2 L+DCI in GSE221343), testing whether the SOX2lowCFTR+ shift
+  replicates cross-line within the same lab. The 4-sample design (iAT2 3D
+  + iAT1 3D + iAT1 ALI p0 + iAT1 ALI p1) enables within-tranche
+  comparison of culture format and passage effects on iAT1 identity.
+
+low_friction_notes: >-
+  4 per-GSM CellRanger v3 filtered H5 files in GSE221342_RAW.tar (54.5 Mb
+  total). Standard 10x Chromium format. Gene-space audit confirmed 58398
+  Gene Expression features per sample, 28378/30852 (91.98%) reference gene
+  overlap — identical to GSE221343/GSE221344. 162 duplicate gene symbols
+  (1543 extra entries) resolved via var_names_make_unique. 3 custom/reporter
+  features retained (EGFP_EXTRA, TDTOMATO_EXTRA_IVS, BFP-WPRE). Genome
+  tag is GRCh38_tdtomato_gfp_bfp_wpre. No gene-symbol remapping needed.
+
+public_artifact_situation: >-
+  Per-GSM CellRanger filtered H5 files available individually and bundled
+  in GSE221342_RAW.tar (54.5 Mb). 4 samples = 4 H5 files:
+  GSM6858850_iAT2_3D.h5 (12.4 Mb), GSM6858851_iAT1_3D.h5 (15.4 Mb),
+  GSM6858852_iAT1_ALI_p0.h5 (12.0 Mb), GSM6858853_iAT1_ALI_p1.h5
+  (14.6 Mb). No series-level combined object provided. No H5AD provided;
+  per-sample H5 files are the preferred intake path.
+
+registration_notes: >-
+  [Superseded by conversion_notes below.]
+  Registration-only intake 2026-04-09. This is the seventh external intake
+  candidate. Selected as boundary-stress / same-line-to-anchor tranche
+  after BU/Kotton accession disambiguation. Accession-title mapping
+  verified against current GEO page 2026-04-09. Role set to
+  nearest_external_validation (existing contract enum); true intent is
+  same-line-to-anchor boundary-stress tranche.
+
+conversion_notes: >-
+  H5-to-H5AD conversion completed 2026-04-09. All 4 samples: CellRanger
+  v3 filtered H5, float32 raw counts (integer-valued), 58398 Gene
+  Expression features, 28378/30852 (91.98%) reference gene overlap —
+  identical to GSE221343/GSE221344. Genome build confirmed as
+  GRCh38_tdtomato_gfp_bfp_wpre (custom CellRanger reference with EGFP,
+  tdTomato-IVS, and BFP-WPRE appended for BU3 NGAT dual-reporter line).
+  162 duplicate gene symbols (1543 extra entries) resolved via
+  var_names_make_unique. 3 custom/reporter features retained:
+  EGFP_EXTRA (NKX2-1-GFP knock-in), TDTOMATO_EXTRA_IVS (SFTPC-tdTomato),
+  BFP-WPRE (lentiviral construct element). No gene-symbol remapping
+  needed. Conversion script:
+  queries/converted/gse221342/convert_gse221342_h5_to_h5ad.py.
+  qc_status set to local_validation_inspected_manual_review_required.
+  query_ready_flag remains false pending projection and review.
+
+review_notes: >-
+  All 4 rows promoted to query_ready_flag=true after explicit reviewer
+  decision 2026-04-09. Gate A (object contract), Gate B (provenance),
+  Gate C (projection smoke test on v1), and Gate D (within-tranche
+  biology coherence) all passed. Promoted as a boundary-stress tranche:
+  iAT2 3D maps to mid_GW14_16 (first external row at this stage); iAT1
+  3D/ALI p0/ALI p1 show SOX2lowCFTR+ dominant (60.9-78.0%), replicating
+  the L+DCI shift cross-line (BU3 NGAT vs SPC2-ST-B2 in GSE221343).
+  ALI p1 has strongest SOX2lowCFTR+ (78.0%) and best alignment (0.773)
+  of any tranche. This is NOT a P-0001 validation tranche (BU3 NGAT,
+  not SPC2-ST-B2). Review artifacts at
+  reports/tranches/gse221342_query_ready_review_v1/.
