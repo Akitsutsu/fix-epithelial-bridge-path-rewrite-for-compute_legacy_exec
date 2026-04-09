@@ -1,0 +1,7 @@
+row_id	component	source_epi_summary_path	epithelial_top_stage_coarse	epithelial_top_stage_fine	epithelial_top_state_fine	epithelial_lineage_off_target_fraction	epithelial_ambiguous_fraction	extraction_note
+CA1	anchor	benchmark_run_gse237359_vs_CA1_CA1_compute/epithelial/CA1/CA1_epi_summary_v1.json	mid_GW14_16	week_15	Basal cells	11.5	11.4	NA
+BU3	anchor	benchmark_run_gse237359_vs_BU3_BU3_compute/epithelial/BU3/BU3_epi_summary_v1.json	mid_GW14_16	week_15	Basal cells	1.8	10.9	NA
+G237359_15934	GSE237359	benchmark_run_gse237359_vs_G237359_15934_G237359_15934_compute/epithelial/G237359_15934/G237359_15934_epi_summary_v1.json	late_GW17_19	week_18	Tip cells	0.0	13.3	NA
+G237359_16011	GSE237359	benchmark_run_gse237359_vs_G237359_16011_G237359_16011_compute/epithelial/G237359_16011/G237359_16011_epi_summary_v1.json	late_GW17_19	week_18	Tip cells	0.0	12.6	low cell count (261)
+G237359_16392	GSE237359	benchmark_run_gse237359_vs_G237359_16392_G237359_16392_compute/epithelial/G237359_16392/G237359_16392_epi_summary_v1.json	late_GW17_19	week_18	Tip cells	0.0	13.6	NA
+G237359_16402	GSE237359	benchmark_run_gse237359_vs_G237359_16402_G237359_16402_compute/epithelial/G237359_16402/G237359_16402_epi_summary_v1.json	late_GW17_19	week_18	Tip cells	0.0	17.1	NA
