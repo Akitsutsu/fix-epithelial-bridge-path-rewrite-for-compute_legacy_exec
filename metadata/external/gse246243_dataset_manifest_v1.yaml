@@ -1,0 +1,71 @@
+dataset_id: external_gse246243
+series_accession: GSE246243
+title: >-
+  Time Series of differentiation from human iAT2s to iAT1s in L+DCI medium
+source_type: iPSC-derived alveolar epithelial organoid (iAT2/iAT1 kinetic, BU3 NGAT, 3D L+DCI time series)
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3')
+platform: GPL30173 (NextSeq 2000)
+status: candidate_not_yet_reviewed
+priority: next_candidate
+query_ready_flag: false
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE246243
+  bioproject: PRJNA1032111
+  public_since: 2024-04-19
+  last_updated: 2024-06-26
+  processed_supplementary:
+    - GSE246243_RAW.tar  # 61.3 Mb; contains 4 per-GSM CellRanger filtered H5 files
+    - GSM7865483_CK_DCI_filtered_feature_bc_matrix.h5  # 15.4 Mb
+    - GSM7865484_24hrs_filtered_feature_bc_matrix.h5  # 16.2 Mb
+    - GSM7865485_48hrs_filtered_feature_bc_matrix.h5  # 16.1 Mb
+    - GSM7865486_72hrs_filtered_feature_bc_matrix.h5  # 13.5 Mb
+  sample_ids:
+    - GSM7865483  # iAT2 3D (CKDCI medium, 3D Matrigel, 3d post-passage baseline)
+    - GSM7865484  # iAT1 24hr (LDCI switch, 24hr)
+    - GSM7865485  # iAT1 48hr (LDCI switch, 48hr)
+    - GSM7865486  # iAT1 72hr (LDCI switch, 72hr)
+
+publication:
+  pmid: "38642558"
+  doi: 10.1016/j.stem.2024.03.017
+  journal: Cell Stem Cell
+  first_author: Burgess CL
+  year: 2024
+  title: >-
+    Generation of human alveolar epithelial type I cells from pluripotent
+    stem cells
+
+design_summary: >-
+  BU3 NGAT iPSCs differentiated into iAT2s in 3D Matrigel. Cells passaged
+  into iAT2 medium (CK+DCI); first sample taken 3 days post-passage as
+  baseline. Remaining cells switched to iAT1 differentiation medium (L+DCI);
+  samples taken at 24, 48, and 72 hours post media change. 4 samples total.
+  Same cell line and lab as GSE221342 (BU3 NGAT, Kotton/BU).
+
+availability_summary:
+  soft_family: confirmed_public
+  miniml_family: confirmed_public
+  series_matrix: confirmed_public
+  raw_tar: confirmed_public  # GSE246243_RAW.tar, 61.3 Mb
+  sra: confirmed_public  # SRX22226278-SRX22226281
+  per_sample_processed_h5:
+    GSM7865483: confirmed_public  # 15.4 Mb
+    GSM7865484: confirmed_public  # 16.2 Mb
+    GSM7865485: confirmed_public  # 13.5 Mb (actually 16.1 Mb per GEO)
+    GSM7865486: confirmed_public  # 13.5 Mb
+
+local_acquisition_status: not_yet_acquired
+
+notes: >-
+  Same-line kinetic strengthening tranche for P-0002 alveolar commitment
+  direction. BU3 NGAT is the same iPSC line as GSE221342 (already canonical
+  in v4) and the BU3 anchor query. Adds temporal resolution (24/48/72hr
+  kinetic) to the L+DCI commitment shift already observed as an endpoint
+  in GSE221342. Per-sample CellRanger filtered H5 files are directly
+  available — same format as GSE221342. Expected to use the same
+  H5-to-H5AD conversion path. This is NOT a P-0001 same-line SPC2-ST-B2
+  tranche (BU3 NGAT != SPC2-ST-B2). Candidate only; not yet reviewed or
+  promoted.
