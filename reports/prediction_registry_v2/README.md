@@ -59,6 +59,15 @@ This is explicitly not full alveolarization, alveologenesis, or
 morphogenesis. Success and falsification are bounded to the 5 existing
 epithelial columns. `epi_alignment` is not required.
 
+### Indicative thresholds (not encoded in TSV)
+The TSV row uses qualitative language ("without large worsening of
+epithelial off-target or ambiguity"). For evaluation guidance:
+- Off-target worsening ≤ 10 percentage points relative to matched
+  baseline is considered acceptable.
+- Ambiguity ≤ 60% is considered acceptable.
+These are indicative, not hard rules. A future evaluation step may
+refine them based on the actual data distribution.
+
 ### Basis
 Signal tranches: GSE221343, GSE289846, GSE193716 (iAEC2 subset),
 GSE221344 (supportive partial positive-arm).
