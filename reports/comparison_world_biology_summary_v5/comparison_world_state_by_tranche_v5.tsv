@@ -1,0 +1,8 @@
+state_fine	anchor_CA1_BU3	GSE237359	GSE221343	GSE289846	GSE308817	GSE193716_iAEC2	GSE221344	GSE221342	GSE246243	n_tranches	cross_lab_replicated	note
+Basal cells	CA1; BU3									1	no	proximal anchor only; mid_GW14_16 / week_15
+Tip cells		G237359_15934; G237359_16011; G237359_16392; G237359_16402								1	no	distal fetal-derived only; late_GW17_19 / week_18
+Stromal-like cells 1			GSM6858854_CK_DCI; GSM6858855_YAP5SA_CK_DCI							1	no	reference label mapping not actual stromal; iAT2 samples only
+SOX2lowCFTR+ cells			GSM6858856_L_DCI	GSE289846_3i_LATS_Day14				GSM6858851_iAT1_3D; GSM6858852_iAT1_ALI_p0; GSM6858853_iAT1_ALI_p1	GSM7865486_iAT1_72hr	4	yes	AT1-directed state; replicates across BU SPC2-ST-B2 (L+DCI), Kyoto B2-3 (LATS-IN-1), BU BU3-NGAT (L+DCI 3D/ALI + 72hr kinetic); 3 lines, 2 labs; GSE246243 72hr adds kinetic confirmation
+Proliferating progenitors				GSE289846_3i_Day7		GSM5819133_iAEC2_3D; GSM5819134_iAEC2_3D_insert; GSM5819135_iAEC2_MRC5_insert	GSM6858857_WT_YAP; GSM6858858_YAP5SA		GSM7865483_iAT2_3D; GSM7865484_iAT1_24hr; GSM7865485_iAT1_48hr	4	no	same lab (BU) for GSE193716, GSE221344, and GSE246243 (kinetic t=0/24hr/48hr) but different datasets; replicates GSE289846 3i_Day7 cross-dataset; GSE221344 adds perturbation axis; GSE246243 adds kinetic axis (baseline + early timepoints before commitment shift)
+PNEC				GSE289846_3i_PAL_Day14						1	no	transitional neuroendocrine; only row with stage shift to early_GW10_13
+Budtip progenitors					GSE308817_ALOp3; GSE308817_ALOp7; GSE308817_ALOp20			GSM6858850_iAT2_3D		2	yes	passage series (GSE308817) + iAT2 baseline (GSE221342); cross-lab BU + Xiamen; ambiguity 14-50%
