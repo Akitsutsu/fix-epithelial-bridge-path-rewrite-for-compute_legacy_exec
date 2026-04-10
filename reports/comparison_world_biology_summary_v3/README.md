@@ -63,7 +63,9 @@ sample sheets were modified.
 - All v2 rows: mirrored unchanged from v2
 - GSE221344: mirrored from `gse221344_query_ready_decisions_v1.tsv`
   and `gse221344_projection_review_v1.tsv`
-- No values were re-computed
+- CA1, BU3, GSE237359 (6 rows): epithelial columns mirrored from
+  `reports/repo_state/legacy_metric_backfill_pilot_v1.tsv`
+  (legacy multiroot rerun extraction; no re-projection performed)
 
 ## Key biological takeaways (updated from v2)
 1. CA1/BU3 = proximal anchor at mid_GW14_16 / Basal cells
@@ -84,5 +86,4 @@ sample sheets were modified.
 - GSE193716 primary AEC2 rows (4 held, not query-ready)
 - Spatial evidence
 - Combined-root compute for GSE237359
-- Epi-remap decision-TSV-format metrics for anchors and GSE237359
 - P-0001 cross-tranche closure assessment

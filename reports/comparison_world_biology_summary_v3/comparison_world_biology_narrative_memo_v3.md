@@ -147,7 +147,6 @@ All v2 capabilities retained, plus:
 - No mesenchymal, endothelial, or immune compartment representation
 - No disease-model organoids
 - GSE308817 citation still missing
-- CA1/BU3 epi-remap metrics still unavailable in decision-TSV format
 
 ### New gaps
 - P-0001 cross-tranche closure assessment (combining GSE221344 perturbation
@@ -168,3 +167,8 @@ All v2 sources plus:
 | GSE221344 manifest | `metadata/external/gse221344_dataset_manifest_v1.yaml` |
 | GSE221344 sample sheet | `metadata/external/gse221344_organoid_query_sample_sheet_v1.tsv` |
 | Decision D-0014 | `decision_log.md` |
+| Legacy epithelial backfill pilot | `reports/repo_state/legacy_metric_backfill_pilot_v1.tsv` |
+
+The 6-row legacy epithelial surface (CA1, BU3, 4 GSE237359 donors) is now
+symmetric at the 5-column level while preserving multiroot provenance.
+Combined-root migration for these rows remains deferred.
