@@ -1,0 +1,123 @@
+dataset_id: external_gse184142
+series_accession: GSE184142
+title: >-
+  Single cell transcriptomic profiling of pluripotent stem cell-derived
+  alveolar type 2 cells expressing SFTPC-tdTomato cultured in 3D spheres,
+  2D submerged culture, and air-liquid interface culture with and without
+  cigarette smoke exposure
+source_type: iPSC-derived iAT2 (SPC2-ST-B2)
+organism: Homo sapiens
+modality: scRNA (10x Chromium Single Cell 3' v2)
+platform: GPL18573 (Illumina NextSeq 500)
+status: accepted_query_ready
+priority: current
+query_ready_flag: false
+reference_basis: converted/reference_RNA.h5ad
+
+geo:
+  series_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE184142
+  bioproject: PRJNA763362
+  processed_supplementary:
+    - GSE184142_RAW.tar
+  per_sample_files:
+    - GSM5578504_KA_2D_filtered_feature_bc_matrix.h5
+    - GSM5578505_KA_3D_filtered_feature_bc_matrix.h5
+    - GSM5578506_KA_ALI_filtered_feature_bc_matrix.h5
+    - GSM5578507_KA_smoke_filtered_feature_bc_matrix.h5
+  sample_ids:
+    - GSM5578504  # KA_2D: iAT2 2D submerged (SPC2-ST-B2)
+    - GSM5578505  # KA_3D: iAT2 3D sphere (SPC2-ST-B2)
+    - GSM5578506  # KA_ALI: iAT2 ALI air control (SPC2-ST-B2)
+    - GSM5578507  # KA_smoke: iAT2 ALI + 5% cigarette smoke (SPC2-ST-B2)
+
+publication:
+  pmid: "35315362"
+  doi: 10.1172/jci.insight.155589
+  journal: JCI Insight
+  first_author: Abo KM
+  year: 2022
+  title: >-
+    Air-liquid interface culture promotes maturation and allows
+    environmental exposure of pluripotent stem cell-derived alveolar
+    epithelium
+
+why_this_dataset: >-
+  Same-line SPC2-ST-B2 format-only control-strengthening tranche. Same
+  lab (Kotton / BU) and iPSC line as GSE221343 and GSE193716. Uniquely
+  includes an ALI air-control condition on SPC2-ST-B2 in CK+DCI AT2-
+  maintenance medium — the specific condition needed to disambiguate
+  whether ALI format alone or L+DCI directed medium drives the
+  SOX2lowCFTR+ shift observed in GSE221343 and GSE221342. Also includes
+  2D submerged and 3D sphere format conditions plus an ALI + 5% cigarette
+  smoke environmental perturbation condition.
+
+added_value_vs_existing_world: >-
+  Adds a same-line ALI air-control arm missing from the current SPC2-ST-B2
+  format-side evidence base. GSE193716 iAEC2 (already in v5) provides 3D,
+  3D/insert, and +MRC5/insert format-only conditions but no ALI condition
+  on SPC2-ST-B2. Together with GSE193716, this tranche strengthens the
+  anti-"format alone explains it" argument: 6 same-line SPC2-ST-B2 format-
+  only conditions now sit on the progenitor/control side with no
+  SOX2lowCFTR+ shift, while only the directed arm (GSE221343 L+DCI) shifts
+  to SOX2lowCFTR+. This is bounded control-strengthening, not strict
+  matched-split P-0001 closure.
+
+low_friction_notes: >-
+  4 per-GSM CellRanger v2 filtered H5 files in GSE184142_RAW.tar (39.5 MB
+  total). Standard 10x Chromium format. Genome build confirmed as
+  GRCh38_tdtomato_GFP_10X (custom GRCh38 with TdTomato and GFP reporters).
+  33540 Gene Expression features per sample, 27097/30852 (87.8%) reference
+  overlap. Gap is lncRNA annotation drift; no gene-symbol remapping needed.
+  Very low acquisition cost: single tar download, extract, convert.
+
+platform_notes: >-
+  10x Chromium 3' scRNA-seq, CellRanger v2 pipeline. Genome build is
+  GRCh38_tdtomato_GFP_10X (custom GRCh38 with TdTomato and GFP reporters
+  appended). Gene-space compatibility verified during inspection:
+  27097/30852 (87.8%) overlap with current reference, matching GSE193716's
+  87.4%. Missing genes are lncRNA annotation differences (AC/AL/AP prefix,
+  LINC), not protein-coding. All key lung markers present. 584 duplicate
+  gene symbols resolved via var_names_make_unique during conversion.
+
+public_artifact_situation: >-
+  Per-GSM CellRanger v2 filtered H5 files available individually and
+  bundled in GSE184142_RAW.tar. 4 samples = 4 H5 files. SuperSeries
+  GSE184144 wraps GSE184142 (scRNA-seq) and GSE184143 (bulk RNA-seq);
+  only GSE184142 is relevant for the scRNA-seq projection pipeline.
+
+registration_notes: >-
+  Dataset registered as same-line SPC2-ST-B2 format-only control-
+  strengthening tranche. Selected for ALI air-control value — the specific
+  condition needed to resolve whether ALI format alone explains the
+  SOX2lowCFTR+ shift. All 4 conditions use CK+DCI AT2-maintenance medium;
+  none include L+DCI or LATS-IN-1 directed medium. Smoke row is an
+  environmental perturbation layered on ALI, not a pure format-only
+  control. NOTE: strict P-0001 closure verdict remains C. This tranche
+  deepens the format-only arm of the cross-tranche same-line evidence base
+  but does not convert it into single-tranche matched-split closure.
+
+conversion_notes: >-
+  H5-to-H5AD conversion completed 2026-04-11. All 4 samples: CellRanger
+  v2 filtered H5, float32 raw counts (integer-valued), 33540 Gene
+  Expression features, 27097/30852 (87.8%) reference gene overlap. Genome
+  build confirmed as GRCh38_tdtomato_GFP_10X. Gap is lncRNA annotation
+  drift; no gene-symbol remapping needed. 584 duplicate gene symbols
+  resolved via var_names_make_unique. TdTomato and GFP reporters retained.
+  Conversion script: queries/converted/gse184142/convert_gse184142_h5_to_h5ad.py.
+  qc_status set to local_validation_inspected_manual_review_required.
+
+review_notes: >-
+  Core subset (3 rows: 2D, 3D, ALI) promoted to query_ready_flag=true
+  after explicit reviewer decision 2026-04-11. Gate A (object contract),
+  Gate B (provenance), Gate C (projection smoke test on v1 via canonical
+  combined-root v2 path), and Gate D (within-tranche biology coherence)
+  all passed for all 4 rows. No row maps to SOX2lowCFTR+. Top epi
+  state_fine is Tip cells (3D, ALI, smoke) or Budtip progenitors (2D) —
+  all on the progenitor/control side of the P-0001 axis. ALI air-control
+  row directly confirms ALI format alone does not drive SOX2lowCFTR+ shift.
+  1 smoke row held by scope (environmental perturbation, not pure format-
+  only control); smoke is NOT held for QC failure — its metrics (alignment
+  0.801, off-target 5.6%) are second-best in the tranche. Dataset-level
+  query_ready_flag remains false because one registered row is
+  intentionally held. Review artifacts at
+  reports/tranches/gse184142_query_ready_review_v1/.
